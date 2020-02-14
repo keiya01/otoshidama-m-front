@@ -1,7 +1,6 @@
 module.exports = {
 	parser: "@typescript-eslint/parser",
-  extends: [ "plugin:@typescript-eslint/recommended", "plugin:react/recommended", "plugin:prettier/recommended" ],
-  plugins: ["@typescript-eslint", "react", "react-hooks", "jsx-a11y"],
+  extends: [ "airbnb-typescript" ],
 	parserOptions: {
 		ecmaVersion: 2019,
 		sourceType: "module",
