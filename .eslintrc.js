@@ -6,17 +6,11 @@ module.exports = {
 		sourceType: "module",
 		ecmaFeatures: [ "jsx" ]
 	},
+	parserOptions: {
+		project: './tsconfig.json',
+	},
 	rules: {
-		"@typescript-eslint/no-empty-function": 0,
-		"@typescript-eslint/no-use-before-define": 0,
-		"@typescript-eslint/explicit-function-return-type": 0,
-    "@typescript-eslint/no-explicit-any": 0,
-    "@typescript-eslint/no-var-requires": 0,
-		"react/prop-types": 0,
-		"no-console": 2,
-		"react-hooks/rules-of-hooks": 2,
-		"react-hooks/exhaustive-deps": 1,
-		"jsx-a11y/rule-name": 1
+		"@typescript-eslint/no-dupe-class-members": 0
   },
   settings:  {
     react:  {
