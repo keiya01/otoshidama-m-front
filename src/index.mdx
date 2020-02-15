@@ -4,3 +4,32 @@ route: /
 ---
 
 # Getting Started
+
+- `docz`はコンポーネントを管理・運用するためのツールで、`storybook`よりもセットアップが簡単でコンポーネントの追加が行いやすいのが特徴である。
+- 基本的にはコンポーネントを`docz`に追加して、動作確認を行ってから、実際のページに組み込むようにしたい
+- [公式の example](https://github.com/doczjs/docz/tree/master/examples)
+- [docz のドキュメント](https://www.docz.site/)
+
+# Setup
+
+`docz`は`mdx`形式で記述されるため vscode を使っている場合は`setting.json`に以下の設定を追加すると使いやすい
+
+```json
+
+"files.associations": {
+  "*.mdx": "markdown"
+}
+
+```
+
+# Run
+
+`npm run docz:dev` または `yarn docz:dev`
+
+# Build
+
+`npm run docz:build` または `yarn docz:build`
+
+# Serve build app
+
+`npm run docz:serve` または `yarn docz:serve`
