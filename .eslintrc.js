@@ -12,6 +12,8 @@ module.exports = {
   },
   rules: {
     "@typescript-eslint/no-dupe-class-members": 0,
-    "@typescript-eslint/explicit-function-return-type": 0
+    "@typescript-eslint/explicit-function-return-type": 0,
+    "import/prefer-default-export": 0,
+    "react/prop-types": 0
   }
 }
