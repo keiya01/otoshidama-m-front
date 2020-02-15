@@ -1,0 +1,5 @@
+scripts
+config
+src/serviceWorker.ts
+*.d.ts
+build
