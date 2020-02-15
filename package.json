@@ -72,7 +72,10 @@
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js",
-    "lint": "eslint . --cache --ext .js,.ts,.tsx"
+    "lint": "eslint . --cache --ext .js,.ts,.tsx",
+    "docz:dev": "docz dev",
+    "docz:build": "docz build",
+    "docz:serve": "docz build && docz serve"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -145,6 +148,7 @@
     ]
   },
   "devDependencies": {
+    "docz": "^2.2.0",
     "eslint-config-airbnb": "^18.0.1",
     "eslint-config-airbnb-typescript": "^7.0.0",
     "eslint-config-prettier": "^6.10.0",
