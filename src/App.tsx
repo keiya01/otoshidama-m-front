@@ -1,11 +1,7 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
+import { store } from './store/store';
 import Router from './components/route/Router';
-import reducer from './reducer/reducer';
-import { composeReduxDevToolsEnhancers } from './store/store';
-
-export const store = createStore(reducer, composeReduxDevToolsEnhancers());
 
 const App = () => (
   <div className="App">

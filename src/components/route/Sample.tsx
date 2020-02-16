@@ -1,14 +1,12 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { store } from '../../App';
 import logo from '../../logo.svg';
 import '../../App.css';
-import appActionCreator from '../../actions/acitonCreator';
-
-type RootState = ReturnType<typeof store.getState>;
+import { RootState } from '../../store/store';
+import * as SampleActions from '../../actions/SampleActions';
 
 const Sample = () => {
-  const sampleState = useSelector((state: RootState) => state.SampleReducer.text);
+  const sampleState = useSelector((state: RootState) => state.SampleReducer);
   const dispatch = useDispatch();
 
   return (
@@ -30,10 +28,10 @@ const Sample = () => {
         >
           Learn React
         </a>
-        <button type="button" onClick={() => { dispatch(appActionCreator.sampleAction('OK')); }}>
+        <button type="button" onClick={() => { dispatch(SampleActions.sampleAction('OK')); }}>
           button1
         </button>
-        <button type="button" onClick={() => { dispatch(appActionCreator.sampleAction('BAD')); }}>
+        <button type="button" onClick={() => { dispatch(SampleActions.sampleAction('BAD')); }}>
           button2
         </button>
         <p>{sampleState}</p>
