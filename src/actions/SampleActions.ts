@@ -4,6 +4,6 @@ export const sampleAction = (text: string) => ({
   payload: {
     text,
   },
-});
+} as const);
 
 export type SampleActions = ReturnType<typeof sampleAction>;
