@@ -1,7 +1,6 @@
-import React, { lazy, Suspense } from 'react';
+import React, { Suspense } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-
-const Sample = lazy(() => import('./Sample'));
+import Sample from './sample';
 
 const Router: React.FC = () => (
   <BrowserRouter>
