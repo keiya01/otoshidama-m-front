@@ -1,5 +1,5 @@
 import { compose, createStore } from 'redux';
-import rootReducer from '../reducer/rootReducer';
+import RootReducers from '../reducer/RootReducers';
 
 interface ExtendedWindow extends Window {
   __REDUX_DEVTOOLS_EXTENSION_COMPOSE__?: typeof compose;
@@ -8,6 +8,4 @@ declare let window: ExtendedWindow;
 
 const composeReduxDevToolsEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-export const store = createStore(rootReducer, composeReduxDevToolsEnhancers());
-
-export type RootState = ReturnType<typeof store.getState>;
+export const store = createStore(RootReducers, composeReduxDevToolsEnhancers());

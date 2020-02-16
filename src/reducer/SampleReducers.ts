@@ -5,11 +5,11 @@ const InitSampleState: SampleState = {
   text: 'Welcome to redux',
 };
 
-type SampleState = {
+export type SampleState = {
   text: string;
 };
 
-const SampleReducer: Reducer<SampleState, SampleActions> = (
+const SampleReducers: Reducer<SampleState, SampleActions> = (
   state = InitSampleState,
   action: SampleActions,
 ): SampleState => {
@@ -26,4 +26,4 @@ const SampleReducer: Reducer<SampleState, SampleActions> = (
   }
 };
 
-export default SampleReducer;
+export default SampleReducers;

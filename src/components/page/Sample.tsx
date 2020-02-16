@@ -2,11 +2,11 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import logo from '../../logo.svg';
 import '../../App.css';
-import { RootState } from '../../store/store';
+import { RootState } from '../../reducer/RootReducers';
 import * as SampleActions from '../../actions/SampleActions';
 
 const Sample = () => {
-  const sampleState = useSelector((state: RootState) => state.SampleReducer);
+  const sampleState = useSelector<RootState, string>((state) => state.text);
   const dispatch = useDispatch();
 
   return (
