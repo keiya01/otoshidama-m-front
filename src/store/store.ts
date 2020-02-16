@@ -1,5 +1,5 @@
 import { compose, createStore } from 'redux';
-import RootReducers from '../reducer/RootReducers';
+import RootReducers from '../reducers/RootReducers';
 
 interface ExtendedWindow extends Window {
   __REDUX_DEVTOOLS_EXTENSION_COMPOSE__?: typeof compose;

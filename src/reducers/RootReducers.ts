@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
-import SampleReducers, { SampleState } from './SampleReducers';
-
-export type RootState = SampleState;
+import SampleReducers from './SampleReducers';
 
 const RootReducer = combineReducers({
   SampleReducers,
 });
 
 export default RootReducer;
+
+export type RootState = ReturnType<typeof RootReducer>;

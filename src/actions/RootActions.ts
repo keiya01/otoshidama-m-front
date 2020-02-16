@@ -1,5 +1,3 @@
-import { SampleActions } from './SampleActions';
-
-type RootActions = SampleActions;
-
-export default RootActions;
+export enum ActionTypes {
+  SAMPLE_ACTION = 'SAMPLE_ACTION',
+}

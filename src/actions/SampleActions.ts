@@ -1,10 +1,10 @@
-export const SAMPLE_ACTION = 'SAMPLE_ACTION';
+import { ActionTypes } from './RootActions';
+
 export const sampleAction = (text: string) => ({
-  type: SAMPLE_ACTION,
+  type: ActionTypes.SAMPLE_ACTION,
   payload: {
     text,
   },
 });
 
-export type SampleActions =
-  | ReturnType<typeof sampleAction>;
+export type SampleActions = ReturnType<typeof sampleAction>;

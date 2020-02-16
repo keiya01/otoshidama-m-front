@@ -1,14 +1,15 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { SampleState } from '../../reducers/SampleReducers';
 import logo from '../../logo.svg';
 import '../../App.css';
-import { RootState } from '../../reducer/RootReducers';
-import * as SampleActions from '../../actions/SampleActions';
 
-const Sample = () => {
-  const sampleState = useSelector<RootState, string>((state) => state.text);
-  const dispatch = useDispatch();
+interface Props {
+  sampleState: SampleState;
+  handle: (text: string) => void;
+}
 
+const Sample: React.FC<Props> = (props) => {
+  const { sampleState, handle } = props;
   return (
     <div className="App">
       <header className="App-header">
@@ -28,13 +29,15 @@ const Sample = () => {
         >
           Learn React
         </a>
-        <button type="button" onClick={() => { dispatch(SampleActions.sampleAction('OK')); }}>
+
+        {/* sample */}
+        <button type="button" onClick={() => handle('ok')}>
           button1
         </button>
-        <button type="button" onClick={() => { dispatch(SampleActions.sampleAction('BAD')); }}>
+        <button type="button" onClick={() => handle('bad')}>
           button2
         </button>
-        <p>{sampleState}</p>
+        <p>{sampleState.text}</p>
       </header>
     </div>
   );
