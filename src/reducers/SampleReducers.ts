@@ -1,6 +1,5 @@
 import { Reducer } from 'redux';
-import { SampleActions } from '../actions/SampleActions';
-import { ActionTypes } from '../actions/RootActions';
+import { SampleActions, SAMPLE_ACTION } from '../actions/SampleActions';
 
 export type SampleState = {
   text: string;
@@ -15,7 +14,7 @@ const SampleReducers: Reducer<SampleState, SampleActions> = (
   action: SampleActions,
 ): SampleState => {
   switch (action.type) {
-    case ActionTypes.SAMPLE_ACTION: {
+    case SAMPLE_ACTION: {
       return {
         text: action.payload.text,
       };

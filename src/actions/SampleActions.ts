@@ -1,7 +1,6 @@
-import { ActionTypes } from './RootActions';
-
+export const SAMPLE_ACTION = 'SAMPLE_ACTION';
 export const sampleAction = (text: string) => ({
-  type: ActionTypes.SAMPLE_ACTION,
+  type: SAMPLE_ACTION,
   payload: {
     text,
   },

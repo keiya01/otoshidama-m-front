@@ -1,3 +1,3 @@
-export enum ActionTypes {
-  SAMPLE_ACTION = 'SAMPLE_ACTION',
-}
+import { SampleActions } from './SampleActions';
+
+export type RootActions = SampleActions;
