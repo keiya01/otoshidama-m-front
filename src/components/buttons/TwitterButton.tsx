@@ -6,7 +6,7 @@ const Button = styled.button`
   max-width: 240px;
   padding: 8px 0;
   text-align: center;
-  font-size: 0.9rem;
+  font-size: 1.6rem;
   font-weight: bold;
   background-color: #1da1f2;
   border-radius: 50px;
@@ -29,7 +29,7 @@ const TwitterButton: React.FC = () => (
   <Button type="button">
     Twitter認証をして
     <br />
-    当選結果を確認する
+    抽選結果を確認する
   </Button>
 );
 
