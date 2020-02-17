@@ -30,26 +30,51 @@ const TabItem = styled.li`
   }
 `;
 
+const ChartOperationList = styled.ul`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+`;
+
+const ChartOperationItem = styled.li`
+  color: #E6BF43;
+  margin: 10px 50px;
+  padding: 10px;
+  font-size: 28px;
+  &:hover {
+    opacity: 0.6;
+    cursor: pointer;
+  }
+`;
+
 const ChartContainer = styled.div`
   width: 70%;
   margin: 150px auto 0 auto;
 `;
 
 const Setting: React.FC = () => {
-  const [tab, setTab] = useState(1);
+  const [tab, setTab] = useState(0);
+  const [chartType, setChartType] = useState(0);
+  const charts = [<LineChart />, <BarChart />];
 
-  const selectContainer = (tabNum: number) => (tabNum === 1 ? <LineChart /> : <BarChart />);
+  const selectContainer = (tabNum: number, chart: number) => (
+    tabNum === 0 ? charts[chart] : <div>Tweet関連画面</div>
+  );
 
   return (
     <div>
       <TabContainer>
         <TabList>
-          <TabItem onClick={() => setTab(1)}>抽選状況</TabItem>
-          <TabItem onClick={() => setTab(2)}>Tweet関連</TabItem>
+          <TabItem onClick={() => setTab(0)}>抽選状況</TabItem>
+          <TabItem onClick={() => setTab(1)}>Tweet関連</TabItem>
         </TabList>
       </TabContainer>
       <ChartContainer>
-        {selectContainer(tab)}
+        <ChartOperationList>
+          <ChartOperationItem onClick={() => setChartType(0)}>線グラフ</ChartOperationItem>
+          <ChartOperationItem onClick={() => setChartType(1)}>棒グラフ</ChartOperationItem>
+        </ChartOperationList>
+        {selectContainer(tab, chartType)}
       </ChartContainer>
     </div>
   );
