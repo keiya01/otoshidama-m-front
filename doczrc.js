@@ -1,3 +1,5 @@
 export default {
-  typescript: true
+  title: "otoshidama-m-front",
+  typescript: true,
+  ignore: ['README.md']
 };
