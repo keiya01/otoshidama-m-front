@@ -13,6 +13,7 @@ const Button = styled.button`
   border: none;
   color: #fff;
   line-height: 1.4;
+  cursor: pointer;
   &:focus {
     outline: none;
     box-shadow: 0 0 0 3px rgba(29, 161, 242, 0.6);
