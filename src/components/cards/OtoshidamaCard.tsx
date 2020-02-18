@@ -10,6 +10,7 @@ const Card = styled.div`
   box-shadow: 0 0 8px #888;
   padding: 0 20px;
   height: 90%;
+  max-height: 670px;
   width: 90%;
   max-width: 400px;
   position: relative;
@@ -37,7 +38,7 @@ const Icon = styled.span`
 const ButtonContainer = styled.div`
   text-align: center;
   width: 100%;
-  margin-bottom: 100px;
+  margin-bottom: 70px;
   @media (max-width: 350px) {
     margin-bottom: 50px;
   }
