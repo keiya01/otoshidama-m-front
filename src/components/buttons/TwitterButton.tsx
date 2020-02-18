@@ -25,8 +25,12 @@ const Button = styled.button`
   }
 `;
 
-const TwitterButton: React.FC = () => (
-  <Button type="button">
+export interface TwitterButtonProps {
+  onClick?: () => void;
+}
+
+const TwitterButton: React.FC<TwitterButtonProps> = ({ onClick }) => (
+  <Button type="button" onClick={onClick}>
     Twitter認証をして
     <br />
     抽選結果を確認する
