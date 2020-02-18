@@ -20,7 +20,10 @@ const TabContainer = styled.header`
   height: 80px;
   background-color: #E6BF43;
   box-shadow: 2px 2px 3px gray;
-  animation: .7s ease 0s 1 ${headerDown}
+  animation: .7s ease 0s 1 ${headerDown};
+  @media (max-width: 500px) {
+    height: 50px;
+  }
 `;
 
 const TabImage = styled.img`
@@ -29,6 +32,12 @@ const TabImage = styled.img`
   position: absolute;
   top: 10px;
   left: 20px;
+  @media (max-width: 500px) {
+    top: -5px; 
+    left: 10px;
+    width: 30px;
+    height; 30px;
+  }
 `;
 
 const TabList = styled.ul`
@@ -47,11 +56,28 @@ const TabItem = styled.li`
     opacity: 0.6;
     cursor: pointer;
   }
+  @media (max-width: 500px) {
+    margin: 0 10px;
+    font-size: 20px;
+  }
 `;
 
 const ChartContainer = styled.div`
-  width: 70%;
-  margin: 230px auto 0 auto;
+  position: absolute;
+  bottom: 7%;
+  width: 100%;
+  padding: 0 15%;
+  margin: 0 auto;
+  @media (max-width: 500px) {
+    width: 100%;
+    padding: 0;
+  }
+  @media (max-height: 850px) {
+    bottom: 18%;
+  }
+  @media (max-height: 750px) {
+    bottom: 7%;
+  }
 `;
 
 const Setting: React.FC = () => {

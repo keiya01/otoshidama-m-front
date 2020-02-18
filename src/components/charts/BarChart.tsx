@@ -27,10 +27,14 @@ interface Props {
 const BarChart: React.FC<Props> = (props) => {
   const { labelsType } = props;
   const labels = getLabels(labelsType);
+  const height = window.screen.width > 500
+    ? (window.screen.height / window.screen.width) * 250
+    : 330;
 
   return (
     <Bar
       data={{ labels, datasets }}
+      height={height}
       options={options}
     />
   );
