@@ -1,7 +1,15 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import LineChart from '../charts/LineChart';
 import BarChart from '../charts/BarChart';
+import ChartOperation from '../charts/ChartOperation';
+import { LabelType } from '../charts/func';
+import LabelsOperation from '../charts/LabelsOperation';
+
+const headerDown = keyframes`
+0% { transform: translateY(-100%); }
+100% { transform: translateY(0); }
+`;
 
 const TabContainer = styled.header`
   width: 100%;
@@ -11,6 +19,7 @@ const TabContainer = styled.header`
   height: 80px;
   background-color: #E6BF43;
   box-shadow: 2px 2px 3px gray;
+  animation: .7s ease 0s 1 ${headerDown}
 `;
 
 const TabList = styled.ul`
@@ -24,23 +33,7 @@ const TabItem = styled.li`
   margin: 10px 50px;
   padding 10px;
   font-size: 28px;
-  &:hover {
-    opacity: 0.6;
-    cursor: pointer;
-  }
-`;
-
-const ChartOperationList = styled.ul`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-`;
-
-const ChartOperationItem = styled.li`
-  color: #E6BF43;
-  margin: 10px 50px;
-  padding: 10px;
-  font-size: 28px;
+  transition: opacity .3s ease;
   &:hover {
     opacity: 0.6;
     cursor: pointer;
@@ -49,13 +42,14 @@ const ChartOperationItem = styled.li`
 
 const ChartContainer = styled.div`
   width: 70%;
-  margin: 150px auto 0 auto;
+  margin: 230px auto 0 auto;
 `;
 
 const Setting: React.FC = () => {
   const [tab, setTab] = useState(0);
   const [chartType, setChartType] = useState(0);
-  const charts = [<LineChart />, <BarChart />];
+  const [labelsype, setLabelsType] = useState(LabelType.WEEK);
+  const charts = [<LineChart labelsType={labelsype} />, <BarChart labelsType={labelsype} />];
 
   const selectContainer = (tabNum: number, chart: number) => (
     tabNum === 0 ? charts[chart] : <div>Tweet関連画面</div>
@@ -69,11 +63,9 @@ const Setting: React.FC = () => {
           <TabItem onClick={() => setTab(1)}>Tweet関連</TabItem>
         </TabList>
       </TabContainer>
+      <ChartOperation setChartType={setChartType} />
+      <LabelsOperation setLabelsType={setLabelsType} />
       <ChartContainer>
-        <ChartOperationList>
-          <ChartOperationItem onClick={() => setChartType(0)}>線グラフ</ChartOperationItem>
-          <ChartOperationItem onClick={() => setChartType(1)}>棒グラフ</ChartOperationItem>
-        </ChartOperationList>
         {selectContainer(tab, chartType)}
       </ChartContainer>
     </div>

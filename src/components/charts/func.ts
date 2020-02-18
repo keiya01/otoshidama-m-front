@@ -59,5 +59,6 @@ export const getOptions = () => ({
   },
   animation: {
     duration: 1000,
+    easing: 'easeOutExpo',
   },
 });

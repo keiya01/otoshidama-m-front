@@ -20,20 +20,26 @@ const lineBaseDatasets = (data: number[], label: string, color: string) => ({
   data,
 });
 
-const labels = getLabels(LabelType.MONTH);
-
+const options = getOptions();
 const datasets = [
   lineBaseDatasets([30, 20, 92, 94, 33, 68, 48], 'Favorite', 'red'),
   lineBaseDatasets([65, 59, 80, 81, 56, 55, 40], 'Retweet', 'yellowgreen'),
 ];
 
-const options = getOptions();
+interface Props {
+  labelsType: LabelType;
+}
 
-const LineChart = () => (
-  <Line
-    data={{ labels, datasets }}
-    options={options}
-  />
-);
+const LineChart: React.FC<Props> = (props) => {
+  const { labelsType } = props;
+  const labels = getLabels(labelsType);
+
+  return (
+    <Line
+      data={{ labels, datasets }}
+      options={options}
+    />
+  );
+};
 
 export default LineChart;
