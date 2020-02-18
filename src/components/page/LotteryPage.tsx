@@ -1,5 +1,16 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+import OtoshidamaCard from '../cards/OtoshidamaCard';
+
+const BackgroundCheckBoard = css`
+  background:
+    linear-gradient(45deg, rgba(230, 192, 67, 0.5) 25%, transparent 25%),
+    linear-gradient(-45deg, rgba(230, 192, 67, 0.5) 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, rgba(230, 192, 67, 0.5) 75%),
+    linear-gradient(-45deg, transparent 75%, rgba(230, 192, 67, 0.5) 75%);
+  background-size: 180px 180px;
+  background-position: 0 0, 0 90px, 90px -90px, -90px 0;
+`;
 
 const Container = styled.div`
   display: flex;
@@ -8,17 +19,12 @@ const Container = styled.div`
   align-items: center;
   width: 100%;
   height: 100vh;
-  background-color: #fff;
-`;
-
-const Title = styled.h1`
-  font-size: 3rem;
-  color: #E6BF43;
+  ${BackgroundCheckBoard}
 `;
 
 const LotteryPage: React.FC = () => (
   <Container>
-    <Title>otoshidama-m</Title>
+    <OtoshidamaCard />
   </Container>
 );
 
