@@ -16,6 +16,7 @@ const ChartOperationList = styled.ul`
   display: flex;
   flex-direction: row;
   justify-content: center;
+  box-shadow: 1px 2px 2px gray;
   border-radius: 7px;
   z-index: -1;
   animation: 1.3s ease 0s 1 ${optionDown}

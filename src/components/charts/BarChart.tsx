@@ -2,7 +2,11 @@ import React from 'react';
 import { Bar } from 'react-chartjs-2';
 import { getOptions, getLabels, LabelType } from './func';
 
-const barBaseDatasets = (data: number[], label: string, color: string) => ({
+const barBaseDatasets = (
+  data: number[],
+  label: string,
+  color: string,
+) => ({
   label,
   backgroundColor: '#fff',
   borderColor: color,

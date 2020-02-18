@@ -2,7 +2,11 @@ import React from 'react';
 import { Line } from 'react-chartjs-2';
 import { getLabels, LabelType, getOptions } from './func';
 
-const lineBaseDatasets = (data: number[], label: string, color: string) => ({
+const lineBaseDatasets = (
+  data: number[],
+  label: string,
+  color: string,
+) => ({
   label,
   fill: false,
   lineTension: 0.01,
@@ -14,9 +18,9 @@ const lineBaseDatasets = (data: number[], label: string, color: string) => ({
   pointHoverBackgroundColor: color,
   pointBorderWidth: 7,
   pointHoverBorderWidth: 2,
-  pointRadius: 1,
+  pointRadius: 2,
   pointHoverRadius: 5,
-  pointHitRadius: 10,
+  pointHitRadius: 12,
   data,
 });
 

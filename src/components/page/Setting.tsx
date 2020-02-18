@@ -5,6 +5,7 @@ import BarChart from '../charts/BarChart';
 import ChartOperation from '../charts/ChartOperation';
 import { LabelType } from '../charts/func';
 import LabelsOperation from '../charts/LabelsOperation';
+import GeerImage from '../../assets/geer.svg';
 
 const headerDown = keyframes`
 0% { transform: translateY(-100%); }
@@ -20,6 +21,14 @@ const TabContainer = styled.header`
   background-color: #E6BF43;
   box-shadow: 2px 2px 3px gray;
   animation: .7s ease 0s 1 ${headerDown}
+`;
+
+const TabImage = styled.img`
+  height: 60px;
+  width: 60px;
+  position: absolute;
+  top: 10px;
+  left: 20px;
 `;
 
 const TabList = styled.ul`
@@ -59,6 +68,7 @@ const Setting: React.FC = () => {
     <div>
       <TabContainer>
         <TabList>
+          <TabImage src={GeerImage} />
           <TabItem onClick={() => setTab(0)}>抽選状況</TabItem>
           <TabItem onClick={() => setTab(1)}>Tweet関連</TabItem>
         </TabList>

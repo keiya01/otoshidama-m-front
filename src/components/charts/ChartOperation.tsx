@@ -22,7 +22,7 @@ const ChartOperationList = styled.ul`
 const ChartOperationItem = styled.li`
   color: #E6BF43;
   font-weight: 500;
-  text-shadow: 2px 1px 0 lightgray;
+  text-shadow: 1px 2px 0 lightgray;
   margin: 0 50px;
   padding: 10px;
   font-size: 28px;
