@@ -22,9 +22,15 @@ const Container = styled.div`
   ${BackgroundCheckBoard}
 `;
 
-const LotteryPage: React.FC = () => (
+export interface LotteryPageProps {
+  login: () => Promise<void>;
+  fetching: boolean;
+  isError: boolean;
+}
+
+const LotteryPage: React.FC<LotteryPageProps> = ({ login }) => (
   <Container>
-    <OtoshidamaCard />
+    <OtoshidamaCard login={login} />
   </Container>
 );
 
