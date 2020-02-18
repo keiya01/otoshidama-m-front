@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import styled from 'styled-components';
 import AbsoluteBorder from '../borders/AbsoluteBorder';
 import TwitterButton from '../buttons/TwitterButton';
@@ -44,7 +44,7 @@ const ButtonContainer = styled.div`
   }
 `;
 
-const OtoshidamaCard: React.FC = () => (
+const OtoshidamaCard = (): ReactElement => (
   <Card>
     <AbsoluteBorder borderColor="#e6bf43" top={35} right={5} left={5} isVertical />
     <AbsoluteBorder borderColor="#ed514e" right={20} top={5} bottom={5} />

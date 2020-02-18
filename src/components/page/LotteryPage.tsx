@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import styled, { css } from 'styled-components';
 import OtoshidamaCard from '../cards/OtoshidamaCard';
 
@@ -22,7 +22,7 @@ const Container = styled.div`
   ${BackgroundCheckBoard}
 `;
 
-const LotteryPage: React.FC = () => (
+const LotteryPage = (): ReactElement => (
   <Container>
     <OtoshidamaCard />
   </Container>
