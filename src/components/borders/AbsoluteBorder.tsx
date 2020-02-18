@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import styled from 'styled-components';
 
 export interface AbsoluteBorderProps {
@@ -28,9 +28,9 @@ const Border = styled.div`
   ${setBorderStyle}
 `;
 
-const AbsoluteBorder: React.FC<AbsoluteBorderProps> = ({
+const AbsoluteBorder = ({
   borderColor, top, right, bottom, left, isVertical,
-}) => (
+}: AbsoluteBorderProps): ReactElement => (
   <Border
     borderColor={borderColor}
     top={top}

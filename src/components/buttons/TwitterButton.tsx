@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import styled from 'styled-components';
 
 const Button = styled.button`
@@ -26,7 +26,7 @@ const Button = styled.button`
   }
 `;
 
-const TwitterButton: React.FC = () => (
+const TwitterButton = (): ReactElement => (
   <Button type="button">
     Twitter認証をして
     <br />
