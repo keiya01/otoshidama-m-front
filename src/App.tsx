@@ -5,11 +5,9 @@ import Router from './components/route/Router';
 import './stylesheet.css';
 
 const App = (): ReactElement => (
-  <div className="App">
-    <Provider store={store}>
-      <Router />
-    </Provider>
-  </div>
+  <Provider store={store}>
+    <Router />
+  </Provider>
 );
 
 export default App;
