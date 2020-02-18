@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React, { ReactElement, memo } from 'react';
 import styled from 'styled-components';
 import AbsoluteBorder from '../borders/AbsoluteBorder';
 import TwitterButton from '../buttons/TwitterButton';
@@ -10,6 +10,7 @@ const Card = styled.div`
   box-shadow: 0 0 8px #888;
   padding: 0 20px;
   height: 90%;
+  max-height: 670px;
   width: 90%;
   max-width: 400px;
   position: relative;
@@ -37,7 +38,7 @@ const Icon = styled.span`
 const ButtonContainer = styled.div`
   text-align: center;
   width: 100%;
-  margin-bottom: 100px;
+  margin-bottom: 70px;
   @media (max-width: 350px) {
     margin-bottom: 50px;
   }
@@ -47,7 +48,7 @@ export interface OtoshidamaCardProps {
   login: () => Promise<void>;
 }
 
-const OtoshidamaCard: React.FC<OtoshidamaCardProps> = memo(({ login }) => {
+const OtoshidamaCard = memo(({ login }: OtoshidamaCardProps): ReactElement => {
   const handleOnClick = () => {
     login();
   };

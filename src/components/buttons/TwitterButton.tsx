@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import styled from 'styled-components';
 
 const Button = styled.button`
@@ -13,6 +13,7 @@ const Button = styled.button`
   border: none;
   color: #fff;
   line-height: 1.4;
+  cursor: pointer;
   &:focus {
     outline: none;
     box-shadow: 0 0 0 3px rgba(29, 161, 242, 0.6);
@@ -29,7 +30,7 @@ export interface TwitterButtonProps {
   onClick?: () => void;
 }
 
-const TwitterButton: React.FC<TwitterButtonProps> = ({ onClick }) => (
+const TwitterButton = ({ onClick }: TwitterButtonProps): ReactElement => (
   <Button type="button" onClick={onClick}>
     Twitter認証をして
     <br />
