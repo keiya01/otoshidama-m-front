@@ -15,21 +15,23 @@ const barBaseDatasets = (
 });
 
 const options = getOptions();
-const datasets = [
-  barBaseDatasets([30, 20, 92, 94, 33, 68, 48], 'Favorite', 'red'),
-  barBaseDatasets([65, 59, 80, 81, 56, 55, 40], 'Retweet', 'yellowgreen'),
-];
 
 interface Props {
   labelsType: LabelType;
+  datas: number[][];
 }
 
 const BarChart: React.FC<Props> = (props) => {
-  const { labelsType } = props;
-  const labels = getLabels(labelsType);
+  const { labelsType, datas } = props;
+  const labels = getLabels(labelsType, datas[0].length);
   const height = window.screen.width > 500
     ? (window.screen.height / window.screen.width) * 250
     : 330;
+
+  const datasets = [
+    barBaseDatasets(datas[0], 'Favorite', 'red'),
+    barBaseDatasets(datas[1], 'Retweet', 'yellowgreen'),
+  ];
 
   return (
     <Bar

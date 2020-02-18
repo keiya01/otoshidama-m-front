@@ -33,14 +33,14 @@ const getPastDay = (ltype: LabelType): Date => {
   return pastDay;
 };
 
-export const getLabels = (ltype: LabelType): string[] => {
+export const getLabels = (ltype: LabelType, level: number): string[] => {
   const today = new Date();
   const pastDay = getPastDay(ltype);
   const res = [];
   const diff = today.getTime() - pastDay.getTime();
-  const cur = diff / 7;
+  const cur = diff / level;
 
-  for (let i = 1; i <= 7; i += 1) {
+  for (let i = 1; i <= level; i += 1) {
     res.push(new Date(cur * i + pastDay.getTime()));
   }
 

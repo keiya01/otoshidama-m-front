@@ -80,11 +80,19 @@ const ChartContainer = styled.div`
   }
 `;
 
+const dummyData1 = [30, 20, 92, 94, 33, 68, 48];
+const dummyData2 = [65, 59, 80, 81, 56, 55, 40];
+
+const datas = [dummyData1, dummyData2];
+
 const Setting = () => {
   const [tab, setTab] = useState(0);
   const [chartType, setChartType] = useState(0);
   const [labelsype, setLabelsType] = useState(LabelType.WEEK);
-  const charts = [<LineChart labelsType={labelsype} />, <BarChart labelsType={labelsype} />];
+  const charts = [
+    <LineChart labelsType={labelsype} datas={datas} />,
+    <BarChart labelsType={labelsype} datas={datas} />,
+  ];
 
   const selectContainer = (tabNum: number, chart: number) => (
     tabNum === 0 ? charts[chart] : <div>Tweet関連画面</div>
