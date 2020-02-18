@@ -80,7 +80,7 @@ const ChartContainer = styled.div`
   }
 `;
 
-const Setting: React.FC = () => {
+const Setting = () => {
   const [tab, setTab] = useState(0);
   const [chartType, setChartType] = useState(0);
   const [labelsype, setLabelsType] = useState(LabelType.WEEK);

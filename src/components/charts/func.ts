@@ -1,5 +1,5 @@
-const toDayHour = (date: Date) => `${date.getHours().toString()}時`;
-const toMonthDay = (date: Date) => `${(date.getMonth() + 1).toString()}/${date.getDate().toString()}`;
+const toDayHour = (date: Date): string => `${date.getHours().toString()}時`;
+const toMonthDay = (date: Date): string => `${(date.getMonth() + 1).toString()}/${date.getDate().toString()}`;
 
 export enum LabelType {
   HALF_DAY = 0,
@@ -9,7 +9,7 @@ export enum LabelType {
   YEAR = 5
 }
 
-const getPastDay = (ltype: LabelType) => {
+const getPastDay = (ltype: LabelType): Date => {
   const pastDay = new Date();
   switch (ltype) {
     case LabelType.HALF_DAY:
@@ -33,7 +33,7 @@ const getPastDay = (ltype: LabelType) => {
   return pastDay;
 };
 
-export const getLabels = (ltype: LabelType) => {
+export const getLabels = (ltype: LabelType): string[] => {
   const today = new Date();
   const pastDay = getPastDay(ltype);
   const res = [];
