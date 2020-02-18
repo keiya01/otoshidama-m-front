@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import styled from 'styled-components';
 import AbsoluteBorder from '../borders/AbsoluteBorder';
 import TwitterButton from '../buttons/TwitterButton';
@@ -47,7 +47,7 @@ export interface OtoshidamaCardProps {
   login: () => Promise<void>;
 }
 
-const OtoshidamaCard: React.FC<OtoshidamaCardProps> = ({ login }) => {
+const OtoshidamaCard: React.FC<OtoshidamaCardProps> = memo(({ login }) => {
   const handleOnClick = () => {
     login();
   };
@@ -67,6 +67,6 @@ const OtoshidamaCard: React.FC<OtoshidamaCardProps> = ({ login }) => {
       </ButtonContainer>
     </Card>
   );
-};
+}, (prevProps, nextProps) => prevProps.login === nextProps.login);
 
 export default OtoshidamaCard;
