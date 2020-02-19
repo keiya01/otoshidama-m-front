@@ -1,6 +1,7 @@
 import React, { ReactElement } from 'react';
 import styled, { css } from 'styled-components';
 import OtoshidamaCard from '../cards/OtoshidamaCard';
+import ErrorAlert from '../alerts/ErrorAlert';
 
 const BackgroundCheckBoard = css`
   background:
@@ -22,14 +23,29 @@ const Container = styled.div`
   ${BackgroundCheckBoard}
 `;
 
+const AlertWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+`;
+
 export interface LotteryPageProps {
   login: () => Promise<void>;
   fetching: boolean;
   isError: boolean;
 }
 
-const LotteryPage = ({ login, fetching }: LotteryPageProps): ReactElement => (
+const LotteryPage = ({ login, fetching, isError }: LotteryPageProps): ReactElement => (
   <Container>
+    {isError
+    && (
+    <AlertWrapper>
+      <ErrorAlert isError={isError}>Twitter認証に失敗しました</ErrorAlert>
+    </AlertWrapper>
+    )}
     <OtoshidamaCard login={login} fetching={fetching} />
   </Container>
 );

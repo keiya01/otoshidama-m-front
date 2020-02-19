@@ -1,0 +1,23 @@
+---
+name: ErrorAlert
+menu: Alerts
+---
+
+import { Playground, Props } from 'docz';
+import ErrorAlert from './ErrorAlert';
+
+# ErrorAlert
+
+一般的なエラー時のアラートコンポーネント
+
+# Props
+
+<Props of={ErrorAlert}/>
+
+## Basic Usage
+
+<Playground>
+  <div style={{width: '100%', height: 200, potision: 'relative'}}>
+      <ErrorAlert isError={true}>エラーが発生しました</ErrorAlert>
+  </div>
+</Playground>

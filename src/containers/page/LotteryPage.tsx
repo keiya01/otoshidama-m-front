@@ -4,8 +4,9 @@ import * as TwitterAuthActions from '../../actions/TwitterAuthActions';
 import { User } from '../../types/user';
 import LotteryPage from '../../components/page/LotteryPage';
 
-const dummyFetch = async () => new Promise<User>((resolve) => setTimeout(() => {
+const dummyFetch = async () => new Promise<User>((resolve, reject) => setTimeout(() => {
   resolve({ id: '12345', name: 'dummy' });
+  // reject(new Error('Error occurred'));
 }, 1000));
 
 const useTwitterAuth = () => {
