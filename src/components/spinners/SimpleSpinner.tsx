@@ -33,5 +33,5 @@ const Spinner = styled.span`
 export default function SimpleSpinner({
   color, borderWidth, size,
 }: SimpleSpinnerProps): ReactElement {
-  return <Spinner role="img" aria-label="loading spinner" color={color} borderWidth={borderWidth} size={size} />;
+  return <Spinner aria-label="loading spinner" color={color} borderWidth={borderWidth} size={size} />;
 }
