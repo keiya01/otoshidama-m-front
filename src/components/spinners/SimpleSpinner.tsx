@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react';
 import styled, { keyframes } from 'styled-components';
 
-interface SimpleSpinnerProps {
+export interface SimpleSpinnerProps {
   color: string;
   borderWidth: number;
   size: number;
