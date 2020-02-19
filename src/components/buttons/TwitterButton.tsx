@@ -31,13 +31,20 @@ const Button = styled.button`
 
 export interface TwitterButtonProps {
   onClick?: () => void;
+  fetching: boolean;
 }
 
-const TwitterButton = ({ onClick }: TwitterButtonProps): ReactElement => (
+const TwitterButton = ({ onClick, fetching }: TwitterButtonProps): ReactElement => (
   <Button type="button" onClick={onClick}>
-    Twitter認証をして
-    <br />
-    抽選結果を確認する
+    {fetching
+      ? <SimpleSpinner color="#fff" size={35} borderWidth={5} />
+      : (
+        <>
+          Twitter認証をして
+          <br />
+          抽選結果を確認する
+        </>
+      )}
   </Button>
 );
 

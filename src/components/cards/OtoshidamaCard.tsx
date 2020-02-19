@@ -1,4 +1,4 @@
-import React, { ReactElement, memo } from 'react';
+import React, { ReactElement } from 'react';
 import styled from 'styled-components';
 import AbsoluteBorder from '../borders/AbsoluteBorder';
 import TwitterButton from '../buttons/TwitterButton';
@@ -36,7 +36,8 @@ const Icon = styled.span`
 `;
 
 const ButtonContainer = styled.div`
-  text-align: center;
+  display: flex;
+  justify-content: center;
   width: 100%;
   margin-bottom: 70px;
   @media (max-width: 350px) {
@@ -46,9 +47,10 @@ const ButtonContainer = styled.div`
 
 export interface OtoshidamaCardProps {
   login: () => Promise<void>;
+  fetching: boolean;
 }
 
-const OtoshidamaCard = memo(({ login }: OtoshidamaCardProps): ReactElement => {
+const OtoshidamaCard = ({ login, fetching }: OtoshidamaCardProps): ReactElement => {
   const handleOnClick = () => {
     login();
   };
@@ -64,10 +66,10 @@ const OtoshidamaCard = memo(({ login }: OtoshidamaCardProps): ReactElement => {
         </Title>
       </VerticalContent>
       <ButtonContainer>
-        <TwitterButton onClick={handleOnClick} />
+        <TwitterButton onClick={handleOnClick} fetching={fetching} />
       </ButtonContainer>
     </Card>
   );
-}, (prevProps, nextProps) => prevProps.login === nextProps.login);
+};
 
 export default OtoshidamaCard;

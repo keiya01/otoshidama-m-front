@@ -28,9 +28,9 @@ export interface LotteryPageProps {
   isError: boolean;
 }
 
-const LotteryPage = ({ login }: LotteryPageProps): ReactElement => (
+const LotteryPage = ({ login, fetching }: LotteryPageProps): ReactElement => (
   <Container>
-    <OtoshidamaCard login={login} />
+    <OtoshidamaCard login={login} fetching={fetching} />
   </Container>
 );
 
