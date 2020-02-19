@@ -1,5 +1,5 @@
 import styled, { keyframes } from 'styled-components';
-import React from 'react';
+import React, { ReactElement } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import 'react-datepicker/dist/react-datepicker-cssmodules.css';
@@ -33,7 +33,6 @@ const LabelsOperationList = styled.ul`
     margin: 0 5%;
     padding: 2% 0;
     border-radius: 5px;
-    animation: 1.3s ease 0s 1 ${optionDown};
   }
 `;
 
@@ -43,9 +42,7 @@ const LabelsOperationItem = styled.li`
   margin: 0 5%;
   padding: 10px;
   transition: opacity .3s ease;
-  &:hover {
-    cursor: pointer;
-  }
+  cursor: pointer;
   & .react-datepicker {
     font-size: 1.3rem !important;
   }
@@ -96,7 +93,7 @@ interface Props {
   setEndDate: React.Dispatch<React.SetStateAction<Date>>;
 }
 
-const LabelsOperation: React.FC<Props> = (props) => {
+const LabelsOperation = (props: Props): ReactElement => {
   const {
     startDate, endDate, setStartDate, setEndDate,
   } = props;

@@ -1,5 +1,5 @@
+import React, { ReactElement } from 'react';
 import styled, { keyframes } from 'styled-components';
-import React from 'react';
 
 const optionDown = keyframes`
   0% { transform: translateY(-650%); }
@@ -25,7 +25,6 @@ const ChartOperationList = styled.ul`
     top: 15%;
     width: 100%;
     margin: 0;
-    animation: 1s ease 0s 1 ${optionDown};
   }
 `;
 
@@ -37,9 +36,9 @@ const ChartOperationItem = styled.li`
   padding: 10px;
   font-size: 2.2rem;
   transition: opacity .3s ease;
+  cursor: pointer;
   &:hover {
     opacity: 0.6;
-    cursor: pointer;
   }
   @media (max-width: 1024px) {
     font-size: 2.5rem;
@@ -54,7 +53,7 @@ interface Props {
   setChartType: React.Dispatch<React.SetStateAction<number>>;
 }
 
-const ChartOperation: React.FC<Props> = (props) => (
+const ChartOperation = (props: Props): ReactElement => (
   <ChartOperationList>
     <ChartOperationItem onClick={() => props.setChartType(0)}>
       Line Chart

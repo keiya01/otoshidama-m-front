@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import { Line } from 'react-chartjs-2';
 import { getOptions } from './func';
 
@@ -31,7 +31,7 @@ interface Props {
   datas: number[][];
 }
 
-const LineChart: React.FC<Props> = (props) => {
+const LineChart = (props: Props): ReactElement => {
   const { labels, datas } = props;
   const height = window.screen.width > 500
     ? (window.screen.height / window.screen.width) * 250

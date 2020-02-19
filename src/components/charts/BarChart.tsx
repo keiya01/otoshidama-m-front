@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import { Bar } from 'react-chartjs-2';
 import { getOptions } from './func';
 
@@ -21,7 +21,7 @@ interface Props {
   datas: number[][];
 }
 
-const BarChart: React.FC<Props> = (props) => {
+const BarChart = (props: Props): ReactElement => {
   const { labels, datas } = props;
   const height = window.screen.width > 500
     ? (window.screen.height / window.screen.width) * 250
