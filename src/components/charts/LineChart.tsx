@@ -1,6 +1,6 @@
 import React from 'react';
 import { Line } from 'react-chartjs-2';
-import { getLabels, LabelType, getOptions } from './func';
+import { getOptions } from './func';
 
 const lineBaseDatasets = (
   data: number[],
@@ -27,13 +27,12 @@ const lineBaseDatasets = (
 const options = getOptions();
 
 interface Props {
-  labelsType: LabelType;
+  labels: string[];
   datas: number[][];
 }
 
 const LineChart: React.FC<Props> = (props) => {
-  const { labelsType, datas } = props;
-  const labels = getLabels(labelsType, datas[0].length);
+  const { labels, datas } = props;
   const height = window.screen.width > 500
     ? (window.screen.height / window.screen.width) * 250
     : 330;

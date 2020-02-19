@@ -1,6 +1,6 @@
 import React from 'react';
 import { Bar } from 'react-chartjs-2';
-import { getOptions, getLabels, LabelType } from './func';
+import { getOptions } from './func';
 
 const barBaseDatasets = (
   data: number[],
@@ -17,13 +17,12 @@ const barBaseDatasets = (
 const options = getOptions();
 
 interface Props {
-  labelsType: LabelType;
+  labels: string[];
   datas: number[][];
 }
 
 const BarChart: React.FC<Props> = (props) => {
-  const { labelsType, datas } = props;
-  const labels = getLabels(labelsType, datas[0].length);
+  const { labels, datas } = props;
   const height = window.screen.width > 500
     ? (window.screen.height / window.screen.width) * 250
     : 330;

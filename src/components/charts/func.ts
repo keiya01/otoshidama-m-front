@@ -1,51 +1,37 @@
-const toDayHour = (date: Date): string => `${date.getHours().toString()}時`;
-const toMonthDay = (date: Date): string => `${(date.getMonth() + 1).toString()}/${date.getDate().toString()}`;
+const toDayHour = (date: Date): string => `
+  ${date.getHours().toString()}時
+`;
+const toMonthDay = (date: Date): string => `
+  ${(date.getMonth() + 1).toString()}/${date.getDate().toString()}
+`;
+const toYearMonthDay = (date: Date): string => `
+  ${date.getFullYear().toString()}/${(date.getMonth() + 1).toString()}/${date.getDate().toString()}
+`;
 
-export enum LabelType {
-  HALF_DAY = 0,
-  DAY = 1,
-  WEEK = 2,
-  MONTH = 3,
-  YEAR = 5
-}
-
-const getPastDay = (ltype: LabelType): Date => {
-  const pastDay = new Date();
-  switch (ltype) {
-    case LabelType.HALF_DAY:
-      pastDay.setHours(pastDay.getHours() - 12);
-      break;
-    case LabelType.DAY:
-      pastDay.setDate(pastDay.getDate() - 1);
-      break;
-    case LabelType.WEEK:
-      pastDay.setDate(pastDay.getDate() - 7);
-      break;
-    case LabelType.MONTH:
-      pastDay.setMonth(pastDay.getMonth() - 1);
-      break;
-    case LabelType.YEAR:
-      pastDay.setFullYear(pastDay.getFullYear() - 1);
-      break;
-    default:
-      break;
-  }
-  return pastDay;
-};
-
-export const getLabels = (ltype: LabelType, level: number): string[] => {
-  const today = new Date();
-  const pastDay = getPastDay(ltype);
+export const getLabels = (startDate: Date, endDate: Date, level: number): string[] => {
   const res = [];
-  const diff = today.getTime() - pastDay.getTime();
-  const cur = diff / level;
+  const newStartDate = new Date(startDate);
+  if (startDate.getDate() === endDate.getDate()) {
+    newStartDate.setHours(endDate.getHours() - 6);
+    if (endDate.getHours() < 6) {
+      newStartDate.setDate(endDate.getDate() - 1);
+    }
+  } else {
+    const dateDiff = Math.ceil((endDate.getTime() - startDate.getTime()) / 86400000 / (level - 1));
+    newStartDate.setDate(endDate.getDate() - dateDiff * (level - 1));
+  }
 
-  for (let i = 1; i <= level; i += 1) {
-    res.push(new Date(cur * i + pastDay.getTime()));
+  const diff = endDate.getTime() - newStartDate.getTime();
+  const cur = Math.ceil(diff / (level - 1));
+
+  for (let i = 0; i < level; i += 1) {
+    const d = new Date(newStartDate.getTime() + cur * i);
+    res.push(d);
   }
 
   return res.map((v) => {
-    if (ltype <= 1) return toDayHour(v);
+    if (newStartDate.getDate() === endDate.getDate()) return toDayHour(v);
+    if (newStartDate.getFullYear() !== endDate.getFullYear()) return toYearMonthDay(v);
     return toMonthDay(v);
   });
 };

@@ -2,11 +2,6 @@ import styled, { keyframes } from 'styled-components';
 import React from 'react';
 
 const optionDown = keyframes`
-  0% { transform: translateY(-500%); }
-  100% { transform: translateY(0); }
-`;
-
-const optionDownMedia = keyframes`
   0% { transform: translateY(-650%); }
   100% { transform: translateY(0); }
 `;
@@ -22,11 +17,15 @@ const ChartOperationList = styled.ul`
   border-radius: 7px;
   z-index: -1;
   animation: 1s ease 0s 1 ${optionDown};
+  @media (max-width: 1024px) {
+    width: 70%;
+    margin: 0 15%;
+  }
   @media (max-width: 500px) {
     top: 15%;
     width: 100%;
     margin: 0;
-    animation: 1s ease 0s 1 ${optionDownMedia};
+    animation: 1s ease 0s 1 ${optionDown};
   }
 `;
 
@@ -41,6 +40,9 @@ const ChartOperationItem = styled.li`
   &:hover {
     opacity: 0.6;
     cursor: pointer;
+  }
+  @media (max-width: 1024px) {
+    font-size: 2.5rem;
   }
   @media (max-width: 500px) {
     margin: 0 20px;
