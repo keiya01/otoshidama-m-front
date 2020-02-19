@@ -1,11 +1,14 @@
 import React, { ReactElement } from 'react';
 import styled from 'styled-components';
+import SimpleSpinner from '../spinners/SimpleSpinner';
 
 const Button = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 90%;
   max-width: 240px;
-  padding: 8px 0;
-  text-align: center;
+  height: 60px;
   font-size: 1.6rem;
   font-weight: bold;
   background-color: #1da1f2;
