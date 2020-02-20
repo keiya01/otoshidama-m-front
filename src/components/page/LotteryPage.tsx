@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useCallback } from 'react';
 import styled, { css } from 'styled-components';
 import OtoshidamaCard from '../cards/OtoshidamaCard';
 import ErrorAlert from '../alerts/ErrorAlert';
@@ -38,16 +38,22 @@ export interface LotteryPageProps {
   isError: boolean;
 }
 
-const LotteryPage = ({ login, fetching, isError }: LotteryPageProps): ReactElement => (
-  <Container>
-    {isError
-    && (
-    <AlertWrapper>
-      <ErrorAlert isError={isError}>Twitter認証に失敗しました</ErrorAlert>
-    </AlertWrapper>
-    )}
-    <OtoshidamaCard login={login} fetching={fetching} />
-  </Container>
-);
+const LotteryPage = ({ login, fetching, isError }: LotteryPageProps): ReactElement => {
+  const Alert = useCallback((): ReactElement | null => (isError
+    ? (
+      <AlertWrapper>
+        <ErrorAlert isError={isError}>Twitter認証に失敗しました</ErrorAlert>
+      </AlertWrapper>
+    )
+    : null
+  ), [isError]);
+
+  return (
+    <Container>
+      <Alert />
+      <OtoshidamaCard login={login} fetching={fetching} />
+    </Container>
+  );
+};
 
 export default LotteryPage;
