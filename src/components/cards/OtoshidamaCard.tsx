@@ -36,7 +36,8 @@ const Icon = styled.span`
 `;
 
 const ButtonContainer = styled.div`
-  text-align: center;
+  display: flex;
+  justify-content: center;
   width: 100%;
   margin-bottom: 70px;
   @media (max-width: 350px) {
@@ -44,7 +45,12 @@ const ButtonContainer = styled.div`
   }
 `;
 
-const OtoshidamaCard = (): ReactElement => (
+export interface OtoshidamaCardProps {
+  login: () => Promise<void>;
+  fetching: boolean;
+}
+
+const OtoshidamaCard = ({ login, fetching }: OtoshidamaCardProps): ReactElement => (
   <Card>
     <AbsoluteBorder borderColor="#e6bf43" top={35} right={5} left={5} isVertical />
     <AbsoluteBorder borderColor="#ed514e" right={20} top={5} bottom={5} />
@@ -55,7 +61,7 @@ const OtoshidamaCard = (): ReactElement => (
       </Title>
     </VerticalContent>
     <ButtonContainer>
-      <TwitterButton />
+      <TwitterButton onClick={login} fetching={fetching} />
     </ButtonContainer>
   </Card>
 );
