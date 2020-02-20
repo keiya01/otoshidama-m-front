@@ -36,7 +36,8 @@ const Icon = styled.span`
 `;
 
 const ButtonContainer = styled.div`
-  text-align: center;
+  display: flex;
+  justify-content: center;
   width: 100%;
   margin-bottom: 70px;
   @media (max-width: 350px) {
@@ -46,15 +47,17 @@ const ButtonContainer = styled.div`
 
 export interface OtoshidamaCardProps {
   isAuth?: boolean;
+  login: () => Promise<void>;
+  fetching: boolean;
 }
 
-const OtoshidamaCard = ({ isAuth }: OtoshidamaCardProps): ReactElement => {
+const OtoshidamaCard = ({ login, fetching, isAuth }: OtoshidamaCardProps): ReactElement => {
   const Auth = useCallback((): ReactElement | null => (
     isAuth ? (
       <ButtonContainer>
-        <TwitterButton />
+        <TwitterButton onClick={login} fetching={fetching} />
       </ButtonContainer>
-    ) : null), [isAuth]);
+    ) : null), [fetching, isAuth, login]);
 
   return (
     <Card>

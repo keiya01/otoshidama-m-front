@@ -1,3 +1,3 @@
 import { lazy } from 'react';
 
-export default lazy(() => import('../page/LotteryPage'));
+export default lazy(() => import('../../containers/page/LotteryPage'));

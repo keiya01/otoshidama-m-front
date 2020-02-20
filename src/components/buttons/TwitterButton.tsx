@@ -1,11 +1,14 @@
 import React, { ReactElement } from 'react';
 import styled from 'styled-components';
+import SimpleSpinner from '../spinners/SimpleSpinner';
 
 const Button = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 90%;
   max-width: 240px;
-  padding: 8px 0;
-  text-align: center;
+  height: 60px;
   font-size: 1.6rem;
   font-weight: bold;
   background-color: #1da1f2;
@@ -26,11 +29,22 @@ const Button = styled.button`
   }
 `;
 
-const TwitterButton = (): ReactElement => (
-  <Button type="button">
-    Twitter認証をして
-    <br />
-    抽選結果を確認する
+export interface TwitterButtonProps {
+  onClick?: () => void;
+  fetching: boolean;
+}
+
+const TwitterButton = ({ onClick, fetching }: TwitterButtonProps): ReactElement => (
+  <Button type="button" onClick={onClick}>
+    {fetching
+      ? <SimpleSpinner color="#fff" size={35} borderWidth={5} />
+      : (
+        <>
+          Twitter認証をして
+          <br />
+          抽選結果を確認する
+        </>
+      )}
   </Button>
 );
 
