@@ -1,8 +1,7 @@
 import React, { ReactElement, useCallback } from 'react';
 import styled from 'styled-components';
-import LineChart from '../charts/LineChart';
-import BarChart from '../charts/BarChart';
-import { getLabels } from '../charts/chartUtility';
+import { Line, Bar } from 'react-chartjs-2';
+import Chart from '../charts/Chart';
 
 const ChartContainerStyled = styled.div`
   width: 100%;
@@ -22,20 +21,21 @@ interface Props {
   endDate: Date;
 }
 
-const dummyData1 = [30, 20, 92, 94, 33, 68, 48];
-const dummyData2 = [65, 59, 80, 81, 56, 55, 40];
-const data = [dummyData1, dummyData2];
-
 const ChartContainer = (props: Props): ReactElement => {
   const {
     tab, chartType, startDate, endDate,
   } = props;
   const selectContainer = useCallback(
     (tabNum: number, chart: number) => {
-      const labels = getLabels(startDate, endDate, 7);
       const charts = [
-        <LineChart labels={labels} data={data} />,
-        <BarChart labels={labels} data={data} />,
+        <Chart
+          IChartComponent={Line}
+          labelsArgs={{ startDate, endDate, margin: 7 }}
+        />,
+        <Chart
+          IChartComponent={Bar}
+          labelsArgs={{ startDate, endDate, margin: 7 }}
+        />,
       ];
       return tabNum === 0 ? charts[chart] : <div>Tweet関連画面</div>;
     },

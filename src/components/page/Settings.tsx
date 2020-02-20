@@ -17,7 +17,7 @@ const Settings = (): ReactElement => {
 
   return (
     <SettingsStyled>
-      <TabContainer setTab={setTab} />
+      <TabContainer tab={tab} setTab={setTab} />
       <ContentContainer
         tab={tab}
         startDate={startDate}

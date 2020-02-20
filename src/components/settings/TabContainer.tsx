@@ -2,7 +2,7 @@ import React, {
   ReactElement, useCallback,
 } from 'react';
 import styled, { keyframes } from 'styled-components';
-import GeerImage from '../../assets/geer.svg';
+import GearImage from '../../assets/gear.svg';
 
 const headerDown = keyframes`
   0% { transform: translateY(-100%); }
@@ -43,12 +43,14 @@ const TabList = styled.ul`
   justify-content: center;
 `;
 
-const TabItem = styled.li`
+const TabItem = styled.li<{backgroundColor: string}>`
+  background-color: ${({ backgroundColor }) => backgroundColor};
   color: #fff;
   margin: 10px 50px;
   padding: 10px;
   font-size: 28px;
   transition: opacity .3s ease;
+  border-radius: 10px;
   &:hover {
     opacity: 0.6;
     cursor: pointer;
@@ -60,11 +62,12 @@ const TabItem = styled.li`
 `;
 
 interface Props {
+  tab: number;
   setTab: React.Dispatch<React.SetStateAction<number>>;
 }
 
 const TabContainer = (props: Props): ReactElement => {
-  const { setTab } = props;
+  const { tab, setTab } = props;
   const handleOnClick = useCallback(
     (tabNum: number) => () => {
       setTab(tabNum);
@@ -72,15 +75,28 @@ const TabContainer = (props: Props): ReactElement => {
     },
     [setTab],
   );
+  const handleTabItemColor = useCallback(
+    (tabNum: number) => {
+      if (tabNum === tab) return 'orange';
+      return 'none';
+    },
+    [tab],
+  );
 
   return (
     <TabContainerStyled>
       <TabList>
-        <TabImage src={GeerImage} />
-        <TabItem onClick={handleOnClick(0)}>
+        <TabImage src={GearImage} />
+        <TabItem
+          onClick={handleOnClick(0)}
+          backgroundColor={handleTabItemColor(0)}
+        >
           抽選状況
         </TabItem>
-        <TabItem onClick={handleOnClick(1)}>
+        <TabItem
+          onClick={handleOnClick(1)}
+          backgroundColor={handleTabItemColor(1)}
+        >
           Tweet関連
         </TabItem>
       </TabList>
