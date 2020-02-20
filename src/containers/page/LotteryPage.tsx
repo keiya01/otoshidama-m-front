@@ -33,7 +33,9 @@ const useTwitterAuth = () => {
   };
 };
 
-export default function LotteryPageContainer() {
+const LotteryPageContainer = () => {
   const { login, fetching, isError } = useTwitterAuth();
   return <LotteryPage login={login} fetching={fetching} isError={isError} />;
-}
+};
+
+export default LotteryPageContainer;
