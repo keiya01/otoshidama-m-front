@@ -4,10 +4,10 @@ import DatePicker from 'react-datepicker';
 
 const DatePickerStyled = styled.div`
   & .react-datepicker {
-    font-size: 1.3rem !important;
+    font-size: 2.0rem !important;
   }
   & .react-datepicker__current-month {
-    font-size: 1.5rem !important;
+    font-size: 2.2rem !important;
   }
   & .react-datepicker__header {
     padding-top: 6px !important;
@@ -17,12 +17,25 @@ const DatePickerStyled = styled.div`
   }
   & .react-datepicker__day-name, 
     .react-datepicker__day {
-    margin: 0.5rem !important;
+    margin: 1rem !important;
+    width: 2.2rem;
   }
   & .react-datepicker__day--selected {
-    background-color: #E6BF43;
+    background-color: #E6BF43 !important;
+    outline: none;
   }
   @media (max-width: 500px) {
+    & .react-datepicker {
+    font-size: 1.3rem !important;
+    }
+    & .react-datepicker__current-month {
+      font-size: 1.5rem !important;
+    }
+    & .react-datepicker__day-name, 
+      .react-datepicker__day {
+      margin: 0.5rem !important;
+      width: 1.6rem;
+    }
     & .react-datepicker-popper {
       left: -50px !important;
     }
