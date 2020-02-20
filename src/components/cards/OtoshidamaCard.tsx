@@ -50,26 +50,20 @@ export interface OtoshidamaCardProps {
   fetching: boolean;
 }
 
-const OtoshidamaCard = ({ login, fetching }: OtoshidamaCardProps): ReactElement => {
-  const handleOnClick = () => {
-    login();
-  };
-
-  return (
-    <Card>
-      <AbsoluteBorder borderColor="#e6bf43" top={35} right={5} left={5} isVertical />
-      <AbsoluteBorder borderColor="#ed514e" right={20} top={5} bottom={5} />
-      <VerticalContent>
-        <Title>
-          お年玉-M
-          <Icon role="img" aria-label="party popper">&#x1f389;</Icon>
-        </Title>
-      </VerticalContent>
-      <ButtonContainer>
-        <TwitterButton onClick={handleOnClick} fetching={fetching} />
-      </ButtonContainer>
-    </Card>
-  );
-};
+const OtoshidamaCard = ({ login, fetching }: OtoshidamaCardProps): ReactElement => (
+  <Card>
+    <AbsoluteBorder borderColor="#e6bf43" top={35} right={5} left={5} isVertical />
+    <AbsoluteBorder borderColor="#ed514e" right={20} top={5} bottom={5} />
+    <VerticalContent>
+      <Title>
+        お年玉-M
+        <Icon role="img" aria-label="party popper">&#x1f389;</Icon>
+      </Title>
+    </VerticalContent>
+    <ButtonContainer>
+      <TwitterButton onClick={login} fetching={fetching} />
+    </ButtonContainer>
+  </Card>
+);
 
 export default OtoshidamaCard;
