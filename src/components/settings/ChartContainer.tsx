@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useCallback } from 'react';
 import styled from 'styled-components';
 import LineChart from '../charts/LineChart';
 import BarChart from '../charts/BarChart';
@@ -30,13 +30,16 @@ const ChartContainer = (props: Props): ReactElement => {
   const {
     tab, chartType, startDate, endDate,
   } = props;
-  const labels = getLabels(startDate, endDate, 7);
-  const charts = [
-    <LineChart labels={labels} data={data} />,
-    <BarChart labels={labels} data={data} />,
-  ];
-  const selectContainer = (tabNum: number, chart: number) => (
-    tabNum === 0 ? charts[chart] : <div>Tweet関連画面</div>
+  const selectContainer = useCallback(
+    (tabNum: number, chart: number) => {
+      const labels = getLabels(startDate, endDate, 7);
+      const charts = [
+        <LineChart labels={labels} data={data} />,
+        <BarChart labels={labels} data={data} />,
+      ];
+      return tabNum === 0 ? charts[chart] : <div>Tweet関連画面</div>;
+    },
+    [endDate, startDate],
   );
 
   return (
