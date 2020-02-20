@@ -31,7 +31,16 @@ const Spinner = styled.span`
 `;
 
 const SimpleSpinner = ({
-  color, borderWidth, size,
-}: SimpleSpinnerProps): ReactElement => <Spinner aria-label="loading spinner" color={color} borderWidth={borderWidth} size={size} />;
+  color,
+  borderWidth,
+  size,
+}: SimpleSpinnerProps): ReactElement => (
+  <Spinner
+    aria-label="loading spinner"
+    color={color}
+    borderWidth={borderWidth}
+    size={size}
+  />
+);
 
 export default SimpleSpinner;
