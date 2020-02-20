@@ -1,7 +1,7 @@
 import React, { ReactElement, useMemo } from 'react';
 import ChartComponent, { ChartComponentProps, Line } from 'react-chartjs-2';
 import {
-  getOptions, GetLabelsArguments, getChartData, lineBaseData, barBaseData,
+  getOptions, GetLabelsArguments, getChartData, lineBaseDatasets, barBaseDatasets,
 } from './chartUtility';
 
 interface Props {
@@ -22,8 +22,8 @@ const Chart = (props: Props): ReactElement => {
       ? (window.screen.height / window.screen.width) * 250
       : 330), []);
   const chartData = useMemo(() => {
-    if (IChartComponent === Line) return getChartData(data, labelsArgs, lineBaseData);
-    return getChartData(data, labelsArgs, barBaseData);
+    if (IChartComponent === Line) return getChartData(data, labelsArgs, lineBaseDatasets);
+    return getChartData(data, labelsArgs, barBaseDatasets);
   }, [IChartComponent, labelsArgs]);
 
   return (

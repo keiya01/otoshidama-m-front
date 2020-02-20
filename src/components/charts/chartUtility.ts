@@ -83,7 +83,7 @@ interface BaseDataArguments {
   color: string;
 }
 
-export const lineBaseData = (args: BaseDataArguments): object => {
+export const lineBaseDatasets = (args: BaseDataArguments): object => {
   const {
     data, label, color,
   } = args;
@@ -106,7 +106,7 @@ export const lineBaseData = (args: BaseDataArguments): object => {
   };
 };
 
-export const barBaseData = (args: BaseDataArguments): object => {
+export const barBaseDatasets = (args: BaseDataArguments): object => {
   const {
     data, label, color,
   } = args;
@@ -124,15 +124,15 @@ type ChartDataType = { datasets: object[]; labels: string[] };
 export const getChartData = (
   data: number[][],
   getLabelsArgs: GetLabelsArguments,
-  baseData: BaseDataType,
+  baseDatasets: BaseDataType,
 ): ChartData<ChartDataType> => ({
   datasets: [
-    baseData({
+    baseDatasets({
       data: data[0],
       label: 'お気に入り',
       color: 'red',
     }),
-    baseData({
+    baseDatasets({
       data: data[1],
       label: 'リツイート',
       color: 'yellowgreen',
