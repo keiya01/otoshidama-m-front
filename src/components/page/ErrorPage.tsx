@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import ErrorContainer from '../errors/ErrorContainer';
 
 const ContainerStyled = styled.div`
-  background-color: lightcyan;
+  background: radial-gradient(#E6BF43 40%, yellow); 
   width: 100%;
   height: 100vh;
 `;
