@@ -1,4 +1,6 @@
-import React, { ReactElement, ReactText, useState } from 'react';
+import React, {
+  ReactElement, ReactText, useState, useCallback,
+} from 'react';
 import styled, { keyframes } from 'styled-components';
 
 export interface ErrorAlertProps {
@@ -61,19 +63,23 @@ const ErrorAlert = ({ isError, children }: ErrorAlertProps): ReactElement | null
   const [isVisible, setIsVisible] = useState(isError);
   const [startHideAnimation, setStartHideAnimation] = useState(false);
 
-  const handleOnHide = () => {
+  const handleOnHide = useCallback(() => {
     setStartHideAnimation(true);
     setTimeout(() => {
       setIsVisible(false);
     }, 300);
-  };
+  }, [setStartHideAnimation, setIsVisible]);
 
-  return isVisible ? (
+  if (!isVisible) {
+    return null;
+  }
+
+  return (
     <Alert startHideAnimation={startHideAnimation} onClick={handleOnHide}>
       <Message>{children}</Message>
       <CloseMessage>非表示</CloseMessage>
     </Alert>
-  ) : null;
+  );
 };
 
 export default ErrorAlert;
