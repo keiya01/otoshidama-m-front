@@ -6,21 +6,29 @@ const DatePickerStyled = styled.div`
   & .react-datepicker {
     font-size: 1.3rem !important;
   }
-  
   & .react-datepicker__current-month {
     font-size: 1.5rem !important;
   }
-  
   & .react-datepicker__header {
     padding-top: 6px !important;
   }
-  
   & .react-datepicker__navigation {
     top: 13px !important;
   }
-  
-  & .react-datepicker__day-name, .react-datepicker__day {
+  & .react-datepicker__day-name, 
+    .react-datepicker__day {
     margin: 0.5rem !important;
+  }
+  & .react-datepicker__day--selected {
+    background-color: #E6BF43;
+  }
+  @media (max-width: 500px) {
+    & .react-datepicker-popper {
+      left: -50px !important;
+    }
+    & .react-datepicker__triangle {
+      left: 40% !important;
+    }
   }
 `;
 
@@ -40,6 +48,11 @@ const DatePickerWrapper = (props: Props): ReactElement => {
         selected={selected}
         onChange={onChange}
         filterDate={filterDate}
+        showYearDropdown
+        yearDropdownItemNumber={3}
+        showMonthDropdown
+        useShortMonthInDropdown
+        shouldCloseOnSelect={false}
       />
     </DatePickerStyled>
   );
