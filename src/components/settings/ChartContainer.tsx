@@ -2,7 +2,7 @@ import React, { ReactElement } from 'react';
 import styled from 'styled-components';
 import LineChart from '../charts/LineChart';
 import BarChart from '../charts/BarChart';
-import { getLabels } from '../charts/func';
+import { getLabels } from '../charts/chartUtility';
 
 const ChartContainerStyled = styled.div`
   position: absolute;
@@ -32,7 +32,7 @@ interface Props {
 
 const dummyData1 = [30, 20, 92, 94, 33, 68, 48];
 const dummyData2 = [65, 59, 80, 81, 56, 55, 40];
-const datas = [dummyData1, dummyData2];
+const data = [dummyData1, dummyData2];
 
 const ChartContainer = (props: Props): ReactElement => {
   const {
@@ -40,8 +40,8 @@ const ChartContainer = (props: Props): ReactElement => {
   } = props;
   const labels = getLabels(startDate, endDate, 7);
   const charts = [
-    <LineChart labels={labels} datas={datas} />,
-    <BarChart labels={labels} datas={datas} />,
+    <LineChart labels={labels} data={data} />,
+    <BarChart labels={labels} data={data} />,
   ];
   const selectContainer = (tabNum: number, chart: number) => (
     tabNum === 0 ? charts[chart] : <div>Tweet関連画面</div>

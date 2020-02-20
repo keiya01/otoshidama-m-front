@@ -1,45 +1,58 @@
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useMemo } from 'react';
 import { Line } from 'react-chartjs-2';
-import { getOptions } from './func';
+import { getOptions } from './chartUtility';
 
-const lineBaseDatasets = (
-  data: number[],
-  label: string,
-  color: string,
-) => ({
-  label,
-  fill: false,
-  lineTension: 0.01,
-  backgroundColor: '#fff',
-  borderColor: color,
-  pointBorderColor: color,
-  pointHoverBorderColor: '#fff',
-  pointBackgroundColor: '#fff',
-  pointHoverBackgroundColor: color,
-  pointBorderWidth: 7,
-  pointHoverBorderWidth: 2,
-  pointRadius: 2,
-  pointHoverRadius: 5,
-  pointHitRadius: 12,
-  data,
-});
+interface BaseDatasetsArguments {
+  data: number[];
+  label: string;
+  color: string;
+}
 
-const options = getOptions();
+const lineBaseDatasets = (args: BaseDatasetsArguments) => {
+  const { data, label, color } = args;
+  return {
+    label,
+    fill: false,
+    lineTension: 0.01,
+    backgroundColor: '#fff',
+    borderColor: color,
+    pointBorderColor: color,
+    pointHoverBorderColor: '#fff',
+    pointBackgroundColor: '#fff',
+    pointHoverBackgroundColor: color,
+    pointBorderWidth: 7,
+    pointHoverBorderWidth: 2,
+    pointRadius: 2,
+    pointHoverRadius: 5,
+    pointHitRadius: 12,
+    data,
+  };
+};
 
 interface Props {
   labels: string[];
-  datas: number[][];
+  data: number[][];
 }
 
-const LineChart = (props: Props): ReactElement => {
-  const { labels, datas } = props;
-  const height = window.screen.width > 500
-    ? (window.screen.height / window.screen.width) * 250
-    : 330;
+const options = getOptions();
 
+const LineChart = (props: Props): ReactElement => {
+  const { labels, data } = props;
+  const height = useMemo(() => (
+    window.screen.width > 500
+      ? (window.screen.height / window.screen.width) * 250
+      : 330), []);
   const datasets = [
-    lineBaseDatasets(datas[0], 'Favorite', 'red'),
-    lineBaseDatasets(datas[1], 'Retweet', 'yellowgreen'),
+    lineBaseDatasets({
+      data: data[0],
+      label: 'お気に入り',
+      color: 'red',
+    }),
+    lineBaseDatasets({
+      data: data[1],
+      label: 'リツイート',
+      color: 'yellowgreen',
+    }),
   ];
 
   return (

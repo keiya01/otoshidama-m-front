@@ -1,35 +1,48 @@
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useMemo } from 'react';
 import { Bar } from 'react-chartjs-2';
-import { getOptions } from './func';
+import { getOptions } from './chartUtility';
 
-const barBaseDatasets = (
-  data: number[],
-  label: string,
-  color: string,
-) => ({
-  label,
-  backgroundColor: '#fff',
-  borderColor: color,
-  borderWidth: 1,
-  data,
-});
+interface BaseDatasetsArguments {
+  data: number[];
+  label: string;
+  color: string;
+}
 
-const options = getOptions();
+const barBaseDatasets = (args: BaseDatasetsArguments) => {
+  const { data, label, color } = args;
+  return {
+    label,
+    backgroundColor: '#fff',
+    borderColor: color,
+    borderWidth: 1,
+    data,
+  };
+};
 
 interface Props {
   labels: string[];
-  datas: number[][];
+  data: number[][];
 }
 
-const BarChart = (props: Props): ReactElement => {
-  const { labels, datas } = props;
-  const height = window.screen.width > 500
-    ? (window.screen.height / window.screen.width) * 250
-    : 330;
+const options = getOptions();
 
+const BarChart = (props: Props): ReactElement => {
+  const { labels, data } = props;
+  const height = useMemo(() => (
+    window.screen.width > 500
+      ? (window.screen.height / window.screen.width) * 250
+      : 330), []);
   const datasets = [
-    barBaseDatasets(datas[0], 'Favorite', 'red'),
-    barBaseDatasets(datas[1], 'Retweet', 'yellowgreen'),
+    barBaseDatasets({
+      data: data[0],
+      label: 'お気に入り',
+      color: 'red',
+    }),
+    barBaseDatasets({
+      data: data[1],
+      label: 'リツイート',
+      color: 'yellowgreen',
+    }),
   ];
 
   return (

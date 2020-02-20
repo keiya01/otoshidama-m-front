@@ -1,21 +1,28 @@
-import React, { useState } from 'react';
+import React, { ReactElement, useState } from 'react';
+import ChartContainer from './ChartContainer';
 import ChartOperation from '../charts/ChartOperation';
 import LabelsOperation from '../charts/LabelsOperation';
-import TabContainer from '../setting/TabContainer';
-import ChartContainer from '../setting/ChartContainer';
 
-const today = new Date();
-const pastDay = new Date(new Date().setDate(today.getDate() - 6));
+interface Props {
+  tab: number;
+  startDate: Date;
+  endDate: Date;
+  setStartDate: React.Dispatch<React.SetStateAction<Date>>;
+  setEndDate: React.Dispatch<React.SetStateAction<Date>>;
+}
 
-const Setting = () => {
-  const [tab, setTab] = useState(0);
+const ContentContainer = (props: Props): ReactElement => {
+  const {
+    tab,
+    startDate,
+    endDate,
+    setStartDate,
+    setEndDate,
+  } = props;
   const [chartType, setChartType] = useState(0);
-  const [endDate, setEndDate] = useState(today);
-  const [startDate, setStartDate] = useState(pastDay);
 
   return (
     <>
-      <TabContainer setTab={setTab} />
       <ChartContainer
         tab={tab}
         chartType={chartType}
@@ -33,4 +40,4 @@ const Setting = () => {
   );
 };
 
-export default Setting;
+export default ContentContainer;

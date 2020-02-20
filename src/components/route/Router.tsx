@@ -1,10 +1,10 @@
-import React, { Suspense } from 'react';
+import React, { Suspense, ReactElement } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import sample from './sample';
 import setting from './setting';
 import lotteryPage from './lotteryPage';
 
-const Router: React.FC = () => (
+const Router = (): ReactElement => (
   <BrowserRouter>
     <Suspense fallback={<div>loading...</div>}>
       <Switch>

@@ -1,8 +1,8 @@
 import styled, { keyframes } from 'styled-components';
-import React, { ReactElement } from 'react';
-import DatePicker from 'react-datepicker';
+import React, { ReactElement, useMemo, useCallback } from 'react';
 import 'react-datepicker/dist/react-datepicker.css';
 import 'react-datepicker/dist/react-datepicker-cssmodules.css';
+import DatePickerWrapper from '../datepicker/DatePickerWrapper';
 
 const optionDown = keyframes`
   0% { transform: translateY(-650%); }
@@ -43,25 +43,6 @@ const LabelsOperationItem = styled.li`
   padding: 10px;
   transition: opacity .3s ease;
   cursor: pointer;
-  & .react-datepicker {
-    font-size: 1.3rem !important;
-  }
-  
-  & .react-datepicker__current-month {
-    font-size: 1.5rem !important;
-  }
-  
-  & .react-datepicker__header {
-    padding-top: 6px !important;
-  }
-  
-  & .react-datepicker__navigation {
-    top: 13px !important;
-  }
-  
-  & .react-datepicker__day-name, .react-datepicker__day {
-    margin: 0.5rem !important;
-  }
   & input {
     font-size: 2.0rem;
     text-align: center;
@@ -97,26 +78,39 @@ const LabelsOperation = (props: Props): ReactElement => {
   const {
     startDate, endDate, setStartDate, setEndDate,
   } = props;
-  const today = new Date();
-  const filterDates = (date: Date) => date <= today;
+  const today = useMemo(() => new Date(), []);
+  const filterDate = useCallback(
+    (date: Date) => date <= today,
+    [today],
+  );
+  const handleOnStartDateChange = useCallback(
+    (date: Date) => {
+      setStartDate(date);
+    },
+    [setStartDate],
+  );
+  const handleOnEndDateChange = useCallback(
+    (date: Date) => {
+      setEndDate(date);
+    },
+    [setEndDate],
+  );
 
   return (
     <LabelsOperationList>
       <LabelsOperationItem>
-        <DatePicker
+        <DatePickerWrapper
           selected={startDate}
-          onChange={(date) => {
-            setStartDate(date === null ? new Date() : date);
-          }}
-          filterDate={filterDates}
+          onChange={handleOnStartDateChange}
+          filterDate={filterDate}
         />
       </LabelsOperationItem>
       <LabelsOperationItem>to</LabelsOperationItem>
       <LabelsOperationItem>
-        <DatePicker
+        <DatePickerWrapper
           selected={endDate}
-          onChange={(date) => setEndDate(date === null ? new Date() : date)}
-          filterDate={filterDates}
+          onChange={handleOnEndDateChange}
+          filterDate={filterDate}
         />
       </LabelsOperationItem>
     </LabelsOperationList>
