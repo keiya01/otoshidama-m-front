@@ -1,7 +1,7 @@
 import React, { ReactElement, useCallback } from 'react';
 import styled from 'styled-components';
-import OtoshidamaCard from '../cards/OtoshidamaCard';
 import CheckBoard from '../backgrounds/CheckBoard';
+import OtoshidamaCard from '../cards/OtoshidamaCard';
 import ErrorAlert from '../alerts/ErrorAlert';
 
 const Container = styled(CheckBoard)`
