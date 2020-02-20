@@ -31,7 +31,9 @@ interface Props {
 }
 
 const DatePickerWrapper = (props: Props): ReactElement => {
-  const { selected, onChange, filterDate } = props;
+  const {
+    selected, onChange, filterDate,
+  } = props;
   return (
     <DatePickerStyled>
       <DatePicker

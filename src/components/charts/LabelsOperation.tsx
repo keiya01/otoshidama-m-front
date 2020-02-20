@@ -1,5 +1,7 @@
 import styled, { keyframes } from 'styled-components';
-import React, { ReactElement, useMemo, useCallback } from 'react';
+import React, {
+  ReactElement, useMemo, useCallback,
+} from 'react';
 import 'react-datepicker/dist/react-datepicker.css';
 import 'react-datepicker/dist/react-datepicker-cssmodules.css';
 import DatePickerWrapper from '../datepicker/DatePickerWrapper';
@@ -11,11 +13,9 @@ const optionDown = keyframes`
 
 const LabelsOperationList = styled.ul`
   background-color: #E6BF43;
-  position: absolute;
   width: 60%;
-  margin: 0 20%;
+  margin: 1% 20% 0 20%;
   padding: 0.1% 0;
-  top: 18%;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -25,12 +25,11 @@ const LabelsOperationList = styled.ul`
   animation: 1.3s ease 0s 1 ${optionDown};
   @media (max-width: 1024px){
     width: 70%;
-    margin: 0 15%;
+    margin: 3% 15% 0 15%;
   }
   @media (max-width: 500px) {
-    top: 22%;
     width: 90%;
-    margin: 0 5%;
+    margin: 5% 5% 0 5%;
     padding: 2% 0;
     border-radius: 5px;
   }
@@ -42,7 +41,6 @@ const LabelsOperationItem = styled.li`
   margin: 0 5%;
   padding: 10px;
   transition: opacity .3s ease;
-  cursor: pointer;
   & input {
     font-size: 2.0rem;
     text-align: center;
@@ -83,17 +81,12 @@ const LabelsOperation = (props: Props): ReactElement => {
     (date: Date) => date <= today,
     [today],
   );
-  const handleOnStartDateChange = useCallback(
-    (date: Date) => {
-      setStartDate(date);
+  const handleOnChange = useCallback(
+    (whichDate: 'start' | 'end') => (date: Date) => {
+      if (whichDate === 'start') setStartDate(date);
+      if (whichDate === 'end') setEndDate(date);
     },
-    [setStartDate],
-  );
-  const handleOnEndDateChange = useCallback(
-    (date: Date) => {
-      setEndDate(date);
-    },
-    [setEndDate],
+    [setEndDate, setStartDate],
   );
 
   return (
@@ -101,7 +94,7 @@ const LabelsOperation = (props: Props): ReactElement => {
       <LabelsOperationItem>
         <DatePickerWrapper
           selected={startDate}
-          onChange={handleOnStartDateChange}
+          onChange={handleOnChange('start')}
           filterDate={filterDate}
         />
       </LabelsOperationItem>
@@ -109,7 +102,7 @@ const LabelsOperation = (props: Props): ReactElement => {
       <LabelsOperationItem>
         <DatePickerWrapper
           selected={endDate}
-          onChange={handleOnEndDateChange}
+          onChange={handleOnChange('end')}
           filterDate={filterDate}
         />
       </LabelsOperationItem>

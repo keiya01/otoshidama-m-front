@@ -2,13 +2,13 @@ import React, { ReactElement, useMemo } from 'react';
 import { Bar } from 'react-chartjs-2';
 import { getOptions } from './chartUtility';
 
-interface BaseDatasetsArguments {
+interface BaseDatasetArguments {
   data: number[];
   label: string;
   color: string;
 }
 
-const barBaseDatasets = (args: BaseDatasetsArguments) => {
+const barBaseDataset = (args: BaseDatasetArguments) => {
   const { data, label, color } = args;
   return {
     label,
@@ -33,12 +33,12 @@ const BarChart = (props: Props): ReactElement => {
       ? (window.screen.height / window.screen.width) * 250
       : 330), []);
   const datasets = [
-    barBaseDatasets({
+    barBaseDataset({
       data: data[0],
       label: 'お気に入り',
       color: 'red',
     }),
-    barBaseDatasets({
+    barBaseDataset({
       data: data[1],
       label: 'リツイート',
       color: 'yellowgreen',

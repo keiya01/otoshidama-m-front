@@ -1,5 +1,5 @@
 import React, {
-  ReactElement, useCallback, useRef, MouseEvent,
+  ReactElement, useCallback,
 } from 'react';
 import styled, { keyframes } from 'styled-components';
 import GeerImage from '../../assets/geer.svg';
@@ -65,12 +65,10 @@ interface Props {
 
 const TabContainer = (props: Props): ReactElement => {
   const { setTab } = props;
-  const lotteryStatusRef = useRef(null);
-  const tweetRef = useRef(null);
   const handleOnClick = useCallback(
-    (e: MouseEvent<HTMLElement>) => {
-      if (e.currentTarget === lotteryStatusRef.current) setTab(0);
-      if (e.currentTarget === tweetRef.current) setTab(1);
+    (tabNum: number) => () => {
+      setTab(tabNum);
+      setTab(tabNum);
     },
     [setTab],
   );
@@ -79,16 +77,10 @@ const TabContainer = (props: Props): ReactElement => {
     <TabContainerStyled>
       <TabList>
         <TabImage src={GeerImage} />
-        <TabItem
-          onClick={handleOnClick}
-          ref={lotteryStatusRef}
-        >
+        <TabItem onClick={handleOnClick(0)}>
           抽選状況
         </TabItem>
-        <TabItem
-          onClick={handleOnClick}
-          ref={tweetRef}
-        >
+        <TabItem onClick={handleOnClick(1)}>
           Tweet関連
         </TabItem>
       </TabList>

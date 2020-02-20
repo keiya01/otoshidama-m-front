@@ -23,18 +23,18 @@ const ContentContainer = (props: Props): ReactElement => {
 
   return (
     <>
-      <ChartContainer
-        tab={tab}
-        chartType={chartType}
-        startDate={startDate}
-        endDate={endDate}
-      />
       <ChartOperation setChartType={setChartType} />
       <LabelsOperation
         startDate={startDate}
         endDate={endDate}
         setStartDate={setStartDate}
         setEndDate={setEndDate}
+      />
+      <ChartContainer
+        tab={tab}
+        chartType={chartType}
+        startDate={startDate}
+        endDate={endDate}
       />
     </>
   );

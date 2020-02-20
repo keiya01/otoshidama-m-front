@@ -5,21 +5,13 @@ import BarChart from '../charts/BarChart';
 import { getLabels } from '../charts/chartUtility';
 
 const ChartContainerStyled = styled.div`
-  position: absolute;
-  bottom: 7%;
   width: 100%;
   padding: 0 15%;
-  margin: 0 auto;
+  margin: 1% auto 0 auto;
   z-index: -1;
   @media (max-width: 500px) {
     width: 100%;
     padding: 0;
-  }
-  @media (max-height: 850px) {
-    bottom: 18%;
-  }
-  @media (max-height: 750px) {
-    bottom: 7%;
   }
 `;
 

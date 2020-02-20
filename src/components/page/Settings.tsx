@@ -1,6 +1,11 @@
 import React, { useState, ReactElement } from 'react';
+import styled from 'styled-components';
 import TabContainer from '../settings/TabContainer';
 import ContentContainer from '../settings/ContentContainer';
+
+const SettingsStyled = styled.div`
+  padding-top: 80px;
+`;
 
 const today = new Date();
 const pastDay = new Date(new Date().setDate(today.getDate() - 6));
@@ -11,7 +16,7 @@ const Settings = (): ReactElement => {
   const [startDate, setStartDate] = useState(pastDay);
 
   return (
-    <>
+    <SettingsStyled>
       <TabContainer setTab={setTab} />
       <ContentContainer
         tab={tab}
@@ -20,7 +25,7 @@ const Settings = (): ReactElement => {
         setStartDate={setStartDate}
         setEndDate={setEndDate}
       />
-    </>
+    </SettingsStyled>
   );
 };
 
