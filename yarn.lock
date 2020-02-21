@@ -1754,6 +1754,22 @@
     "@types/history" "*"
     "@types/react" "*"
 
+"@types/react-chartjs-2@^2.5.7":
+  version "2.5.7"
+  resolved "https://registry.yarnpkg.com/@types/react-chartjs-2/-/react-chartjs-2-2.5.7.tgz#b77406f6eb6a9f38438966fb27d8cfb1bb7425d3"
+  integrity sha512-waqYqiNULIVUqaKO7MGUpFmWrVtH7gVPOzqwV4y4zgUyu/JiDwC005PpveO442HKnby9kLgp3t1SB2sld+ACLw==
+  dependencies:
+    react-chartjs-2 "*"
+
+"@types/react-datepicker@^2.11.0":
+  version "2.11.0"
+  resolved "https://registry.yarnpkg.com/@types/react-datepicker/-/react-datepicker-2.11.0.tgz#aa6faa66de17b0ff96bc0af9d5d2506d5dd99703"
+  integrity sha512-eagG8BE3TFgPYyZb2/hG4+2delLH9z/4OWzT7wuTCKLHDDXIXgvkb2O2cW8q4/wuqnTnMxo+vl3vgPTENkofzw==
+  dependencies:
+    "@types/react" "*"
+    date-fns "^2.0.1"
+    popper.js "^1.14.1"
+
 "@types/react-dom@*", "@types/react-dom@^16.9.0":
   version "16.9.5"
   resolved "https://registry.yarnpkg.com/@types/react-dom/-/react-dom-16.9.5.tgz#5de610b04a35d07ffd8f44edad93a71032d9aaa7"
@@ -3529,6 +3545,29 @@ charenc@~0.0.1:
   resolved "https://registry.yarnpkg.com/charenc/-/charenc-0.0.2.tgz#c0a1d2f3a7092e03774bfa83f14c0fc5790a8667"
   integrity sha1-wKHS86cJLgN3S/qD8UwPxXkKhmc=
 
+chart.js@^2.9.3:
+  version "2.9.3"
+  resolved "https://registry.yarnpkg.com/chart.js/-/chart.js-2.9.3.tgz#ae3884114dafd381bc600f5b35a189138aac1ef7"
+  integrity sha512-+2jlOobSk52c1VU6fzkh3UwqHMdSlgH1xFv9FKMqHiNCpXsGPQa/+81AFa+i3jZ253Mq9aAycPwDjnn1XbRNNw==
+  dependencies:
+    chartjs-color "^2.1.0"
+    moment "^2.10.2"
+
+chartjs-color-string@^0.6.0:
+  version "0.6.0"
+  resolved "https://registry.yarnpkg.com/chartjs-color-string/-/chartjs-color-string-0.6.0.tgz#1df096621c0e70720a64f4135ea171d051402f71"
+  integrity sha512-TIB5OKn1hPJvO7JcteW4WY/63v6KwEdt6udfnDE9iCAZgy+V4SrbSxoIbTw/xkUIapjEI4ExGtD0+6D3KyFd7A==
+  dependencies:
+    color-name "^1.0.0"
+
+chartjs-color@^2.1.0:
+  version "2.4.1"
+  resolved "https://registry.yarnpkg.com/chartjs-color/-/chartjs-color-2.4.1.tgz#6118bba202fe1ea79dd7f7c0f9da93467296c3b0"
+  integrity sha512-haqOg1+Yebys/Ts/9bLo/BqUcONQOdr/hoEr2LLTRl6C5LXctUdHxsCYfvQVg5JIxITrfCNUDr4ntqmQk9+/0w==
+  dependencies:
+    chartjs-color-string "^0.6.0"
+    color-convert "^1.9.3"
+
 cheerio@^0.22.0:
   version "0.22.0"
   resolved "https://registry.yarnpkg.com/cheerio/-/cheerio-0.22.0.tgz#a9baa860a3f9b595a6b81b1a86873121ed3a269e"
@@ -3634,6 +3673,11 @@ class-utils@^0.3.5:
     define-property "^0.2.5"
     isobject "^3.0.0"
     static-extend "^0.1.1"
+
+classnames@^2.2.6:
+  version "2.2.6"
+  resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.2.6.tgz#43935bffdd291f326dad0a205309b38d00f650ce"
+  integrity sha512-JR/iSQOSt+LQIWwrwEzJ9uk0xfN3mTVYMwt1Ir5mUcSN6pU+V4zQFFaJsclJbPuAUQH+yfWef6tm7l1quW3C8Q==
 
 clean-css@4.2.x, clean-css@^4.2.1:
   version "4.2.3"
@@ -3790,7 +3834,7 @@ collection-visit@^1.0.0:
     map-visit "^1.0.0"
     object-visit "^1.0.0"
 
-color-convert@^1.9.0, color-convert@^1.9.1:
+color-convert@^1.9.0, color-convert@^1.9.1, color-convert@^1.9.3:
   version "1.9.3"
   resolved "https://registry.yarnpkg.com/color-convert/-/color-convert-1.9.3.tgz#bb71850690e1f136567de629d2d5471deda4c1e8"
   integrity sha512-QfAUtd+vFdAtFQcC8CCyYt1fYWxSqAiK2cSD6zDB8N3cpsEBAvRxp9zOGg6G/SHHJYAT88/az/IuDGALsNVbGg==
@@ -4224,7 +4268,7 @@ create-react-context@0.2.2:
     fbjs "^0.8.0"
     gud "^1.0.0"
 
-create-react-context@0.3.0:
+create-react-context@0.3.0, create-react-context@^0.3.0:
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/create-react-context/-/create-react-context-0.3.0.tgz#546dede9dc422def0d3fc2fe03afe0bc0f4f7d8c"
   integrity sha512-dNldIoSuNSvlTJ7slIKC/ZFGKexBMBrrcc+TTe1NdmROnaASuLPvqpwj9v4XS4uXZ8+YPu0sNmShX2rXI5LNsw==
@@ -4616,6 +4660,11 @@ dataloader@^1.4.0:
   resolved "https://registry.yarnpkg.com/dataloader/-/dataloader-1.4.0.tgz#bca11d867f5d3f1b9ed9f737bd15970c65dff5c8"
   integrity sha512-68s5jYdlvasItOJnCuI2Q9s4q98g0pCyL3HrcKJu8KNugUl8ahgmZYg38ysLTgQjjXX3H8CJLkAvWrclWfcalw==
 
+date-fns@^2.0.1:
+  version "2.9.0"
+  resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-2.9.0.tgz#d0b175a5c37ed5f17b97e2272bbc1fa5aec677d2"
+  integrity sha512-khbFLu/MlzLjEzy9Gh8oY1hNt/Dvxw3J6Rbc28cVoYWQaC1S3YI4xwkF9ZWcjDLscbZlY9hISMr66RFzZagLsA==
+
 debug@2.6.9, debug@^2.2.0, debug@^2.3.3, debug@^2.6.0, debug@^2.6.3, debug@^2.6.6, debug@^2.6.9:
   version "2.6.9"
   resolved "https://registry.yarnpkg.com/debug/-/debug-2.6.9.tgz#5d128515df134ff327e90a4c93f4e077a536341f"
@@ -4683,7 +4732,7 @@ decompress-response@^4.2.0:
   dependencies:
     mimic-response "^2.0.0"
 
-deep-equal@^1.0.1, deep-equal@^1.1.0:
+deep-equal@^1.0.1, deep-equal@^1.1.0, deep-equal@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/deep-equal/-/deep-equal-1.1.1.tgz#b5c98c942ceffaf7cb051e24e1434a25a2e6076a"
   integrity sha512-yd9c5AdiqVcR+JjcwUQb9DkhJc8ngNr0MahEBGvDiJw8puWab2yZlh+nkasOnZP+EGTAP6rRp2JzJhJZzvNF8g==
@@ -10252,7 +10301,7 @@ modularscale@^2.0.1:
   dependencies:
     lodash.isnumber "^3.0.0"
 
-moment@^2.24.0:
+moment@^2.10.2, moment@^2.24.0:
   version "2.24.0"
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.24.0.tgz#0d055d53f5052aa653c9f6eb68bb5d12bf5c2b5b"
   integrity sha512-bV7f+6l2QigeBBZSM/6yTNq4P2fNpSWj/0e7jQcy87A8e7o2nAfP/34/2ky5Vw4B9S446EtIhodAzkFCcR4dQg==
@@ -11379,6 +11428,11 @@ pnp-webpack-plugin@1.6.0, pnp-webpack-plugin@^1.5.0:
   dependencies:
     ts-pnp "^1.1.2"
 
+popper.js@^1.14.1, popper.js@^1.14.4:
+  version "1.16.1"
+  resolved "https://registry.yarnpkg.com/popper.js/-/popper.js-1.16.1.tgz#2a223cb3dc7b6213d740e40372be40de43e65b1b"
+  integrity sha512-Wb4p1J4zyFTbM+u6WuO4XstYx4Ky9Cewe4DWrel7B0w6VVICvPwdOpotjzcf6eD8TsckVnIMNONQyPIUFOUbCQ==
+
 portfinder@^1.0.25:
   version "1.0.25"
   resolved "https://registry.yarnpkg.com/portfinder/-/portfinder-1.0.25.tgz#254fd337ffba869f4b9d37edc298059cb4d35eca"
@@ -12480,6 +12534,25 @@ react-app-polyfill@^1.0.6:
     regenerator-runtime "^0.13.3"
     whatwg-fetch "^3.0.0"
 
+react-chartjs-2@*, react-chartjs-2@^2.9.0:
+  version "2.9.0"
+  resolved "https://registry.yarnpkg.com/react-chartjs-2/-/react-chartjs-2-2.9.0.tgz#d054dbdd763fbe9a76296a4ae0752ea549b76d9e"
+  integrity sha512-IYwqUUnQRAJ9SNA978vxulHJTcUFTJk2LDVfbAyk0TnJFZZG7+6U/2flsE4MCw6WCbBjTTypy8T82Ch7XrPtRw==
+  dependencies:
+    lodash "^4.17.4"
+    prop-types "^15.5.8"
+
+react-datepicker@^2.12.1:
+  version "2.12.1"
+  resolved "https://registry.yarnpkg.com/react-datepicker/-/react-datepicker-2.12.1.tgz#de37cc6cda4fd47153a618090a7628da1c6c97d0"
+  integrity sha512-Y5xIim/tzHZ0M+bo6EAZZX5KZ7ov+N6VceSM981bS9dNDoD+ezUAT1/DpeSRXxmFBrNnd5dW4BhlgE36ZzkfLQ==
+  dependencies:
+    classnames "^2.2.6"
+    date-fns "^2.0.1"
+    prop-types "^15.7.2"
+    react-onclickoutside "^6.9.0"
+    react-popper "^1.3.4"
+
 react-dev-utils@^10.2.0:
   version "10.2.0"
   resolved "https://registry.yarnpkg.com/react-dev-utils/-/react-dev-utils-10.2.0.tgz#b11cc48aa2be2502fb3c27a50d1dfa95cfa9dfe0"
@@ -12650,6 +12723,24 @@ react-live@^2.2.1:
     prop-types "^15.5.8"
     react-simple-code-editor "^0.10.0"
     unescape "^1.0.1"
+
+react-onclickoutside@^6.9.0:
+  version "6.9.0"
+  resolved "https://registry.yarnpkg.com/react-onclickoutside/-/react-onclickoutside-6.9.0.tgz#a54bc317ae8cf6131a5d78acea55a11067f37a1f"
+  integrity sha512-8ltIY3bC7oGhj2nPAvWOGi+xGFybPNhJM0V1H8hY/whNcXgmDeaeoCMPPd8VatrpTsUWjb/vGzrmu6SrXVty3A==
+
+react-popper@^1.3.4:
+  version "1.3.7"
+  resolved "https://registry.yarnpkg.com/react-popper/-/react-popper-1.3.7.tgz#f6a3471362ef1f0d10a4963673789de1baca2324"
+  integrity sha512-nmqYTx7QVjCm3WUZLeuOomna138R1luC4EqkW3hxJUrAe+3eNz3oFCLYdnPwILfn0mX1Ew2c3wctrjlUMYYUww==
+  dependencies:
+    "@babel/runtime" "^7.1.2"
+    create-react-context "^0.3.0"
+    deep-equal "^1.1.1"
+    popper.js "^1.14.4"
+    prop-types "^15.6.1"
+    typed-styles "^0.0.7"
+    warning "^4.0.2"
 
 react-reconciler@^0.24.0:
   version "0.24.0"
@@ -15117,6 +15208,11 @@ type@^2.0.0:
   resolved "https://registry.yarnpkg.com/type/-/type-2.0.0.tgz#5f16ff6ef2eb44f260494dae271033b29c09a9c3"
   integrity sha512-KBt58xCHry4Cejnc2ISQAF7QY+ORngsWfxezO68+12hKV6lQY8P/psIkcbjeHWn7MqcgciWJyCCevFMJdIXpow==
 
+typed-styles@^0.0.7:
+  version "0.0.7"
+  resolved "https://registry.yarnpkg.com/typed-styles/-/typed-styles-0.0.7.tgz#93392a008794c4595119ff62dde6809dbc40a3d9"
+  integrity sha512-pzP0PWoZUhsECYjABgCGQlRGL1n7tOHsgwYv3oIiEpJwGhFTuty/YNeduxQYzXXa3Ge5BdT6sHYIQYpl4uJ+5Q==
+
 typedarray-to-buffer@^3.1.5:
   version "3.1.5"
   resolved "https://registry.yarnpkg.com/typedarray-to-buffer/-/typedarray-to-buffer-3.1.5.tgz#a97ee7a9ff42691b9f783ff1bc5112fe3fca9080"
@@ -15758,7 +15854,7 @@ warning@^3.0.0:
   dependencies:
     loose-envify "^1.0.0"
 
-warning@^4.0.3:
+warning@^4.0.2, warning@^4.0.3:
   version "4.0.3"
   resolved "https://registry.yarnpkg.com/warning/-/warning-4.0.3.tgz#16e9e077eb8a86d6af7d64aa1e05fd85b4678ca3"
   integrity sha512-rpJyN222KWIvHJ/F53XSZv0Zl/accqHR8et1kpaMTD/fLCRxtV8iX8czMzY7sVZupTI3zcUTg8eycS2kNF9l6w==
