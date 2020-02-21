@@ -46,18 +46,17 @@ const ButtonContainer = styled.div`
 `;
 
 export interface OtoshidamaCardProps {
-  isAuth?: boolean;
-  login: () => Promise<void>;
-  fetching: boolean;
+  login?: () => Promise<void>;
+  fetching?: boolean;
 }
 
-const OtoshidamaCard = ({ login, fetching, isAuth }: OtoshidamaCardProps): ReactElement => {
-  const Auth = useCallback((): ReactElement | null => (
-    isAuth ? (
+const OtoshidamaCard = ({ login, fetching }: OtoshidamaCardProps): ReactElement => {
+  const AuthButton = useCallback((): ReactElement | null => (
+    login ? (
       <ButtonContainer>
-        <TwitterButton onClick={login} fetching={fetching} />
+        <TwitterButton onClick={login} fetching={!!fetching} />
       </ButtonContainer>
-    ) : null), [fetching, isAuth, login]);
+    ) : null), [fetching, login]);
 
   return (
     <Card>
@@ -69,7 +68,7 @@ const OtoshidamaCard = ({ login, fetching, isAuth }: OtoshidamaCardProps): React
           <Icon role="img" aria-label="party popper">&#x1f389;</Icon>
         </Title>
       </VerticalContent>
-      <Auth />
+      <AuthButton />
     </Card>
   );
 };
