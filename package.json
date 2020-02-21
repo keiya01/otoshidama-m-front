@@ -86,7 +86,8 @@
     "docz:dev": "docz dev",
     "docz:build": "docz build",
     "docz:serve": "docz build && docz serve",
-    "now:dev": "now dev ./build",
+    "now:start": "now dev ./build",
+    "now:dev": "now ./build",
     "now:prod": "now --prod ./build"
   },
   "eslintConfig": {
