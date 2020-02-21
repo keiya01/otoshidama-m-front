@@ -35,7 +35,7 @@ export enum SuccessErrorStatus {
 interface Props {
   setStatus: React.Dispatch<React.SetStateAction<SuccessErrorStatus>>;
   setErrorMsg: React.Dispatch<React.SetStateAction<string>>;
-  callback: () => void;
+  callback: (res: any) => void;
 }
 
 const getInputValue = (id: string): string => {

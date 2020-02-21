@@ -77,7 +77,8 @@ const TweetContainer = (): ReactElement => {
     status === SuccessErrorStatus.ERROR ? errMsg : ''
   ), [errMsg, status]);
   const callback = useCallback(
-    () => {
+    (res) => {
+      // 実際はresをsetUrlに入れる
       setUrl(BASE_URL + createRandomStr());
       setStatus(SuccessErrorStatus.SUCCESS);
     },
