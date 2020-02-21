@@ -1,0 +1,30 @@
+---
+name: Chart
+menu: Charts
+---
+
+import { Playground, Props } from 'docz';
+import Chart from './Chart';
+import { Line } from 'react-chartjs-2'
+
+# Chart
+
+```react-chartjs-2```のグラフを動的に表示するコンポーネント．
+Line, Barにのみ対応．
+
+## Chart Props
+
+<Props of={Chart} />
+
+## Basic Usage
+
+<Playground>
+  <Chart
+    IChartComponent={Line}
+    labelsArgs={{ 
+      startDate: new Date("2006-01-02"), 
+      endDate: new Date(), 
+      margin: 7,
+    }}
+  />
+</Playground>
