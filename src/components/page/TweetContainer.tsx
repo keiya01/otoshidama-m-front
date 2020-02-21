@@ -18,7 +18,7 @@ const ErrorMsg = styled.h3`
 
 const URLBox = styled.div<{ status: SuccessErrorStatus }>`
   margin-top: 5%;
-  /* display: ${({ status }) => (status === SuccessErrorStatus.SUCCESS ? '' : 'none')}; */
+  display: ${({ status }) => (status === SuccessErrorStatus.SUCCESS ? '' : 'none')};
   & h5 {
     color: blue;
     display: inline-block;
@@ -30,10 +30,10 @@ const UrlInput = styled.input`
   margin: 1% auto 0 auto;
   border: solid thin lightgray;
   border-radius: 4px;
-  width: 48%;
+  width: 40%;
   font-size: 2.2rem;
   outline: none;
-  padding: 0 10px;
+  padding: 0 1.5em 0 0.3em;
 `;
 
 const Image = styled.img`
@@ -56,6 +56,16 @@ const CopiedMessage = styled.h6<{isCopied: boolean}>`
   left: -4em;
 `;
 
+const c = 'abcdefghijklmnopqrstuvwxyz0123456789';
+const createRandomStr = (): string => {
+  const len = c.length;
+  let res = '?';
+  for (let i = 0; i < 50; i += 1) {
+    res += c[Math.floor(Math.random() * len)];
+  }
+  return res;
+};
+
 const BASE_URL = 'http://base.origin/';
 
 const TweetContainer = (): ReactElement => {
@@ -68,6 +78,7 @@ const TweetContainer = (): ReactElement => {
   ), [errMsg, status]);
   const callback = useCallback(
     () => {
+      setUrl(BASE_URL + createRandomStr());
       setStatus(SuccessErrorStatus.SUCCESS);
     },
     [],

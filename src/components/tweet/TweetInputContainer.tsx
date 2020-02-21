@@ -2,6 +2,7 @@ import React, {
   ReactElement, useCallback,
 } from 'react';
 import styled from 'styled-components';
+import { stringify } from 'querystring';
 import InputForm from '../form/InputForm';
 import { requestToAppServer } from '../../auth/request';
 
@@ -37,8 +38,18 @@ interface Props {
   callback: () => void;
 }
 
+const getInputValue = (id: string): string => {
+  const elem = document.querySelector(id) as HTMLInputElement;
+  return elem.value;
+};
+
+type RequestType = {
+  campaignTitle: string;
+  twitterId: string;
+};
+
 const TweetInputContainer = (props: Props): ReactElement => {
-  const { setErrorMsg, setStatus } = props;
+  const { callback, setErrorMsg, setStatus } = props;
   const errorHandling = useCallback(
     (err) => {
       setStatus(SuccessErrorStatus.ERROR);
@@ -48,9 +59,14 @@ const TweetInputContainer = (props: Props): ReactElement => {
   );
   const handleOnClick = useCallback(
     () => {
-      requestToAppServer(() => {}, errorHandling);
+      const campaignTitle = getInputValue('#campaign-title-input');
+      const twitterId = getInputValue('#twitter-id-input');
+      requestToAppServer<RequestType>(callback, errorHandling, {
+        campaignTitle,
+        twitterId,
+      });
     },
-    [errorHandling],
+    [callback, errorHandling],
   );
   const handleOnChange = useCallback(
     () => {
@@ -63,7 +79,8 @@ const TweetInputContainer = (props: Props): ReactElement => {
   return (
     <ContainerStyled>
       <InputForm
-        label="企画のTweetURL"
+        id="campaign-title-input"
+        label="企画タイトル"
         fontSize="3rem"
         width="40%"
         marginTop="5%"
@@ -71,6 +88,7 @@ const TweetInputContainer = (props: Props): ReactElement => {
       />
       <br />
       <InputForm
+        id="twitter-id-input"
         label="企画者のTwitterID"
         fontSize="3rem"
         width="40%"

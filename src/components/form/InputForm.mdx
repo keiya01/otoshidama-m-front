@@ -1,0 +1,28 @@
+---
+name: InputForm
+menu: form
+---
+
+import { Playground, Props } from 'docz';
+import InputForm from './InputForm'
+
+# InputForm
+
+ラベル付き入力フォーム
+
+## Props
+
+<Props of={InputForm}/>
+
+## Basic Usage
+
+<Playground>
+  <InputForm
+    id="campaign-title-input"
+    label="企画タイトル"
+    fontSize="3rem"
+    width="40%"
+    marginTop="5%"
+    onChange={handleOnChange}
+  />
+</Playground>

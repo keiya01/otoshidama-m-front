@@ -49,6 +49,14 @@ const getNodeServiceOptions = (token: string): RequestInit => ({
   },
 });
 
+const postNodeServiceOptions = (token: string, body: string): RequestInit => ({
+  method: 'POST',
+  headers: {
+    Authentication: `Bearer ${token}`,
+  },
+  body,
+});
+
 export const requestToMicroService = (
   setError: (err: any) => void,
 ) => {
@@ -63,14 +71,16 @@ export const requestToMicroService = (
   });
 };
 
-export const requestToAppServer = (
+export const requestToAppServer = <T>(
   callback: (result: any) => void,
   setError: (err: any) => void,
+  body: T,
 ) => {
   api(
     NODE_SERVER_BASE_ENDPOINT,
-    getNodeServiceOptions(
+    postNodeServiceOptions(
       getItemFromLocalStorage('access_token'),
+      JSON.stringify(body),
     ),
   ).then((res) => {
     callback(res);

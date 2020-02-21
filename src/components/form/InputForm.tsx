@@ -53,6 +53,7 @@ const LabelStyled = styled.label<{
 `;
 
 interface Props {
+  id: string;
   label: string;
   fontSize: string;
   width: string;
@@ -62,7 +63,7 @@ interface Props {
 
 const InputForm = (props: Props): ReactElement => {
   const {
-    label, fontSize, width, marginTop, onChange,
+    id, label, fontSize, width, marginTop, onChange,
   } = props;
   const [inputClassName, setInputClassName] = useState('');
   const handleFocus = useCallback(
@@ -81,6 +82,7 @@ const InputForm = (props: Props): ReactElement => {
       marginTop={marginTop}
     >
       <InputStyled
+        id={id}
         className={inputClassName}
         autoComplete="off"
         marginTop={marginTop}
