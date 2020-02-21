@@ -16,7 +16,7 @@ const parseQueryParam = (url: string): Map => {
   const element = url.split('?');
   const res: Map = {};
   if (element.length !== 2) return res;
-  element[1].split('&').forEach((v, _) => {
+  element[1].split('&').forEach((v) => {
     const buf = v.split('=');
     if (buf.length !== 2) {
       res[buf[0]] = '';
