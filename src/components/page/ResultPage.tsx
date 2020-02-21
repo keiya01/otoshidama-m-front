@@ -1,5 +1,8 @@
-import React, { ReactElement, useCallback, useState } from 'react';
+import React, {
+  ReactElement, useCallback, useState, useEffect,
+} from 'react';
 import styled, { keyframes, css } from 'styled-components';
+import { useParams, useHistory } from 'react-router-dom';
 import CheckBoard from '../backgrounds/CheckBoard';
 import OtoshidamaCard from '../cards/OtoshidamaCard';
 import ResultCard from '../cards/ResultCard';
@@ -48,19 +51,49 @@ const CardWrapper = styled.div`
   ${setCardAnimation}
 `;
 
+const dummyFetch = async (tweetID: string) => new Promise<{
+  isWinner: boolean;
+  tweetID: string;
+}>((resolve, reject) => setTimeout(() => {
+  if (Math.random() < 0.5) {
+    resolve({ tweetID, isWinner: false });
+  } else {
+    resolve({ tweetID, isWinner: true });
+  }
+  // reject(new Error('Error occurred'));
+}, 1000));
+
 const ResultPage = (): ReactElement => {
+  const [fetching, setFetching] = useState(false);
+  const [isWinner, setIsWinner] = useState(false);
   const [startAnimation, setStartAnimation] = useState(false);
+  const { tweetID } = useParams();
+  const history = useHistory();
   const handleOnClick = useCallback(() => {
     setStartAnimation(true);
   }, [setStartAnimation]);
+
+  useEffect(() => {
+    const fetchWinner = async () => {
+      if (!tweetID) {
+        history.push('/error/404');
+        return;
+      }
+      const res = await dummyFetch(tweetID);
+      setIsWinner(res.isWinner);
+      setFetching(false);
+    };
+    setFetching(true);
+    fetchWinner();
+  }, [history, tweetID]);
 
   return (
     <Container>
       <CardWrapper startAnimation={startAnimation}>
         <OtoshidamaCard />
       </CardWrapper>
-      <ResultCard />
-      <LoadingLotteryModal fetching onClick={handleOnClick} />
+      <ResultCard isWinner={isWinner} />
+      <LoadingLotteryModal fetching={fetching} onClick={handleOnClick} />
     </Container>
   );
 };
