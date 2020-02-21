@@ -80,7 +80,9 @@
     "lint": "eslint . --cache --ext .js,.ts,.tsx",
     "docz:dev": "docz dev",
     "docz:build": "docz build",
-    "docz:serve": "docz build && docz serve"
+    "docz:serve": "docz build && docz serve",
+    "now:dev": "now dev",
+    "now:prod": "now"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -159,6 +161,7 @@
     "eslint-config-airbnb-typescript": "^7.0.0",
     "eslint-config-prettier": "^6.10.0",
     "eslint-plugin-prettier": "^3.1.2",
+    "now": "^17.0.3",
     "prettier": "^1.19.1"
   }
 }
