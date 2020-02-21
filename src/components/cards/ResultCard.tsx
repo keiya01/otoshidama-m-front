@@ -22,6 +22,7 @@ const Title = styled.h1<{color: string}>`
   font-weight: 900;
   text-shadow: 2px 2px 4px #aaa;
   writing-mode: vertical-rl;
+  letter-spacing: 12px;
   @media(max-width: 320px) {
     font-size: 5rem;
   }
