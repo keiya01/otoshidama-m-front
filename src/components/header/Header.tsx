@@ -1,5 +1,5 @@
-import React from 'react'
-import styled from 'styled-components'
+import React from 'react';
+import styled from 'styled-components';
 
 const Container = styled.div`
   position: relative;
@@ -7,7 +7,7 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-`
+`;
 
 const Title = styled.div`
   flex: 1 0 0;
@@ -15,14 +15,14 @@ const Title = styled.div`
   font-size: 36px;
   line-height: 1;
   padding: 12px;
-`
+`;
 
 const Header = (): React.ReactElement => {
   return (
     <Container>
       <Title>お年玉M</Title>
     </Container>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;
