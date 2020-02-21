@@ -41,7 +41,7 @@ const LotteryPage = ({ login, fetching, isError }: LotteryPageProps): ReactEleme
   return (
     <Container>
       <Alert />
-      <OtoshidamaCard login={login} fetching={fetching} isAuth />
+      <OtoshidamaCard login={login} fetching={fetching} />
     </Container>
   );
 };
