@@ -42,14 +42,17 @@ export const getLabels = (args: GetLabelsArguments): string[] => {
     margin,
   };
 
-  if (startDate.getDate() === endDate.getDate()) handleSameDate(newArgs);
-  else handleDifferentDate(newArgs);
+  if (startDate.getDate() === endDate.getDate()) {
+    handleSameDate(newArgs);
+  } else {
+    handleDifferentDate(newArgs);
+  }
 
   const diff = endDate.getTime() - newStartDate.getTime();
   const cur = Math.ceil(diff / (margin - 1));
   const res = Array(margin)
     .fill(null)
-    .map((v, i) => new Date(newStartDate.getTime() + cur * i));
+    .map((_, i) => new Date(newStartDate.getTime() + cur * i));
 
   return res.map((v) => {
     if (newStartDate.getDate() === endDate.getDate()) return toStringDayHour(v);
