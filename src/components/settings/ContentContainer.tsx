@@ -1,4 +1,6 @@
 import React, { ReactElement, useState } from 'react';
+import styled from 'styled-components';
+
 import ChartContainer from './ChartContainer';
 import ChartOperation from '../charts/ChartOperation';
 import LabelsOperation from '../charts/LabelsOperation';
@@ -11,6 +13,10 @@ interface Props {
   setEndDate: React.Dispatch<React.SetStateAction<Date>>;
 }
 
+const Container = styled.div`
+  flex: 1 0 0;
+`;
+
 const ContentContainer = (props: Props): ReactElement => {
   const {
     tab,
@@ -22,7 +28,7 @@ const ContentContainer = (props: Props): ReactElement => {
   const [chartType, setChartType] = useState(0);
 
   return (
-    <>
+    <Container>
       <ChartOperation setChartType={setChartType} />
       <LabelsOperation
         startDate={startDate}
@@ -36,7 +42,7 @@ const ContentContainer = (props: Props): ReactElement => {
         startDate={startDate}
         endDate={endDate}
       />
-    </>
+    </Container>
   );
 };
 
