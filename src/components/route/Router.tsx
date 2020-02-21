@@ -11,6 +11,7 @@ const Router: React.FC = () => (
         <Route exact path="/" component={lotteryPage} />
         <Route path="/sample" component={sample} />
         <Route path="/error/:statusCode" component={error} />
+        <Route component={error} />
       </Switch>
     </Suspense>
   </BrowserRouter>

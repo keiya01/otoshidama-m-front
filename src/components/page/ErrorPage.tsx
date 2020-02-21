@@ -17,7 +17,7 @@ const ErrorPage = (props: Props): ReactElement => {
   const statusCode = +match.params.statusCode;
   return (
     <ContainerStyled>
-      <ErrorContainer statusCode={statusCode} />
+      <ErrorContainer code={statusCode} />
     </ContainerStyled>
   );
 };

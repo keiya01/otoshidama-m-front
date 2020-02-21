@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useMemo } from 'react';
 import styled from 'styled-components';
 
 const ContainerStyled = styled.div`
@@ -34,19 +34,25 @@ const errors = {
 };
 
 const getErrorMessage = (statusCode: number): ErrorMessageType => {
-  let result = errors.ERROR_503;
+  let result = errors.ERROR_404;
   Object.entries(errors).forEach(([key, value]) => {
     if (`ERROR_${statusCode.toString()}` === key) result = value;
   });
   return result;
 };
 
+const validateStatusCode = (statusCode: number): number => {
+  if (Number.isNaN(statusCode)) return 404;
+  return statusCode;
+};
+
 interface Props {
-  statusCode: number;
+  code: number;
 }
 
 const ErrorContainer = (props: Props): ReactElement => {
-  const { statusCode } = props;
+  const { code } = props;
+  const statusCode = useMemo(() => validateStatusCode(code), [code]);
   const { enStatusMsg, jaStatusMsg } = getErrorMessage(statusCode);
   return (
     <ContainerStyled>
