@@ -1,4 +1,6 @@
-import React, { useRef, useEffect, ReactElement } from 'react';
+import React, {
+  useRef, useEffect, ReactElement, useCallback,
+} from 'react';
 import styled from 'styled-components';
 
 const TitleContainer = styled.div`
@@ -14,19 +16,39 @@ const TitleContainer = styled.div`
   border-radius: 50%;
 `;
 
-const Title = styled.h1`
-  color: #E6BF43;
+const Title = styled.h1<{color: string}>`
+  color: ${({ color }) => color};
   font-size: 6rem;
   font-weight: 900;
   text-shadow: 2px 2px 4px #aaa;
-  margin: 0 20px;
+  writing-mode: vertical-rl;
   @media(max-width: 320px) {
     font-size: 5rem;
   }
 `;
 
-const ResultCard = (): ReactElement => {
+export interface ResultCardProps {
+  isWinner?: boolean;
+}
+
+const ResultCard = ({ isWinner }: ResultCardProps): ReactElement => {
   const ref = useRef<HTMLDivElement | null>(null);
+  const Result = useCallback(() => (isWinner ? (
+    <>
+      <Title color="#E6BF43">
+        当選
+        <span role="img" aria-label="party popper">&#x1f389;</span>
+      </Title>
+    </>
+  ) : (
+    <>
+      <Title color="#4397e6">
+        落選
+        <span role="img" aria-label="loudly crying face">&#x1f62d;</span>
+      </Title>
+    </>
+  )),
+  [isWinner]);
 
   useEffect(() => {
     if (ref.current) {
@@ -36,9 +58,7 @@ const ResultCard = (): ReactElement => {
 
   return (
     <TitleContainer ref={ref}>
-      <Title>当</Title>
-      <Title>選</Title>
-      <Title role="img" aria-label="party popper">&#x1f389;</Title>
+      <Result />
     </TitleContainer>
   );
 };
