@@ -86,8 +86,8 @@
     "docz:dev": "docz dev",
     "docz:build": "docz build",
     "docz:serve": "docz build && docz serve",
-    "now:dev": "now dev",
-    "now:prod": "now"
+    "now:dev": "now dev ./build",
+    "now:prod": "now --prod ./build"
   },
   "eslintConfig": {
     "extends": "react-app"
