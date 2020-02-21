@@ -74,7 +74,7 @@ export const requestToAppServer = (
     ),
   ).then((res) => {
     callback(res);
-  }).catch((err) => {
+  }).catch(() => {
     setError('リクエストに失敗しました');
   });
 };

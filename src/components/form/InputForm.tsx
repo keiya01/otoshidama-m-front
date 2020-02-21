@@ -1,5 +1,5 @@
 import React, {
-  ReactElement, useRef, useState, useCallback, FocusEvent,
+  ReactElement, useState, useCallback, FocusEvent,
 } from 'react';
 import styled from 'styled-components';
 

@@ -2,7 +2,7 @@ import React, { useState, ReactElement, useMemo } from 'react';
 import styled from 'styled-components';
 import TabContainer from '../settings/TabContainer';
 import ContentContainer from '../settings/ContentContainer';
-import TweetConnection from './TweetConnection';
+import TweetContainer from './TweetContainer';
 
 const SettingsStyled = styled.div`
   padding-top: 80px;
@@ -28,7 +28,7 @@ const Settings = (): ReactElement => {
       );
     }
     return (
-      <TweetConnection />
+      <TweetContainer />
     );
   }, [endDate, startDate, tab]);
 

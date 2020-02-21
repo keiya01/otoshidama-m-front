@@ -1,16 +1,9 @@
 import React, {
-  ReactElement, useState, useCallback, useMemo,
+  ReactElement, useCallback,
 } from 'react';
 import styled from 'styled-components';
 import InputForm from '../form/InputForm';
 import { requestToAppServer } from '../../auth/request';
-
-const ErrorMsg = styled.h3`
-  color: red;
-  margin-top: 10%;
-  font-size: 2rem;
-  height: 2rem;
-`;
 
 const ContainerStyled = styled.div`
   text-align: center;
@@ -32,16 +25,26 @@ const Button = styled.button`
   }
 `;
 
-const TweetConnection = (): ReactElement => {
-  const [isError, setError] = useState(false);
-  const [errMsg, setErrorMsg] = useState('');
+export enum SuccessErrorStatus {
+  NONE = 0,
+  SUCCESS = 1,
+  ERROR = 2
+}
 
+interface Props {
+  setStatus: React.Dispatch<React.SetStateAction<SuccessErrorStatus>>;
+  setErrorMsg: React.Dispatch<React.SetStateAction<string>>;
+  callback: () => void;
+}
+
+const TweetInputContainer = (props: Props): ReactElement => {
+  const { setErrorMsg, setStatus } = props;
   const errorHandling = useCallback(
     (err) => {
-      setError(true);
+      setStatus(SuccessErrorStatus.ERROR);
       setErrorMsg(err);
     },
-    [],
+    [setErrorMsg, setStatus],
   );
   const handleOnClick = useCallback(
     () => {
@@ -51,21 +54,19 @@ const TweetConnection = (): ReactElement => {
   );
   const handleOnChange = useCallback(
     () => {
-      setError(false);
+      setStatus(SuccessErrorStatus.NONE);
       setErrorMsg('');
     },
-    [],
+    [setErrorMsg, setStatus],
   );
-  const message = useMemo(() => (isError ? errMsg : ''), [errMsg, isError]);
 
   return (
     <ContainerStyled>
-      <ErrorMsg>{message}</ErrorMsg>
       <InputForm
         label="企画のTweetURL"
         fontSize="3rem"
         width="40%"
-        marginTop="1%"
+        marginTop="5%"
         onChange={handleOnChange}
       />
       <br />
@@ -73,7 +74,7 @@ const TweetConnection = (): ReactElement => {
         label="企画者のTwitterID"
         fontSize="3rem"
         width="40%"
-        marginTop="10%"
+        marginTop="5%"
         onChange={handleOnChange}
       />
       <br />
@@ -82,4 +83,4 @@ const TweetConnection = (): ReactElement => {
   );
 };
 
-export default TweetConnection;
+export default TweetInputContainer;
