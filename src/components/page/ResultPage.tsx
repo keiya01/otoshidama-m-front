@@ -1,4 +1,6 @@
-import React, { ReactElement, useCallback, useState } from 'react';
+import React, {
+  ReactElement, useCallback, useState, useEffect,
+} from 'react';
 import styled, { keyframes, css } from 'styled-components';
 import CheckBoard from '../backgrounds/CheckBoard';
 import OtoshidamaCard from '../cards/OtoshidamaCard';
@@ -48,19 +50,45 @@ const CardWrapper = styled.div`
   ${setCardAnimation}
 `;
 
+const dummyFetch = async () => new Promise<{
+  isWinner: boolean;
+}>((resolve, reject) => setTimeout(() => {
+  if (Math.random() < 0.5) {
+    resolve({ isWinner: false });
+  } else {
+    resolve({ isWinner: true });
+  }
+  // reject(new Error('Error occurred'));
+}, 1000));
+
 const ResultPage = (): ReactElement => {
+  const [fetching, setFetching] = useState(false);
+  const [isWinner, setIsWinner] = useState(false);
   const [startAnimation, setStartAnimation] = useState(false);
   const handleOnClick = useCallback(() => {
     setStartAnimation(true);
   }, [setStartAnimation]);
+
+  useEffect(() => {
+    const res = dummyFetch();
+    const fetchWinner = async () => {
+      const { isWinner: resIsWinner } = await res;
+      setTimeout(() => {
+        setIsWinner(resIsWinner);
+        setFetching(false);
+      }, 2000);
+    };
+    setFetching(true);
+    fetchWinner();
+  }, []);
 
   return (
     <Container>
       <CardWrapper startAnimation={startAnimation}>
         <OtoshidamaCard />
       </CardWrapper>
-      <ResultCard />
-      <LoadingLotteryModal fetching onClick={handleOnClick} />
+      <ResultCard isWinner={isWinner} />
+      <LoadingLotteryModal fetching={fetching} onClick={handleOnClick} />
     </Container>
   );
 };
