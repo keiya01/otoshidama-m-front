@@ -1,18 +1,5 @@
-import * as request from 'request';
-
 const MICRO_SERVICE_BASE_ENDPOINT = '/en/d/point';
-const APP_SERVER_BASE_ENDPOINT = '/en/d/point';
-
-const getOptions = (
-  url: string,
-  headers: object,
-  qs: object,
-) => ({
-  url,
-  headers,
-  qs,
-  json: true,
-});
+const NODE_SERVER_BASE_ENDPOINT = '/en/d/point';
 
 const saveTokenToLocalStorage = (accessToken: string) => {
   window.localStorage.setItem('access_token', accessToken);
@@ -23,38 +10,54 @@ const getItemFromLocalStorage = (key: string): string => {
   return value === null ? '' : value;
 };
 
-export const requestToMicroService = (
+const api = <T>(url: string, options: RequestInit): Promise<T> => fetch(url, options)
+  .then((res) => res.json())
+  .catch((err) => {
+    throw new Error(err);
+  });
+
+type MicroServiceResponseType = {
+  token: string;
+};
+
+type NodeServerResponseType = {};
+
+const getMicroServiceOptions = (): RequestInit => ({
+  method: 'GET',
+});
+
+const getNodeServiceOptions = (token: string): RequestInit => ({
+  method: 'GET',
+  headers: {
+    Authentication: `Bearer ${token}`,
+  },
+});
+
+export const requestToMicorService = (
   setError: (err: any) => void,
 ) => {
-  request.get(
-    getOptions(MICRO_SERVICE_BASE_ENDPOINT, {}, {}),
-    (err, _, body) => {
-      if (err) {
-        setError(err);
-        return;
-      }
-      saveTokenToLocalStorage(body.accessToken);
-    },
-  );
+  api<MicroServiceResponseType>(
+    MICRO_SERVICE_BASE_ENDPOINT,
+    getMicroServiceOptions(),
+  ).then((res) => {
+    saveTokenToLocalStorage(res.token);
+  }).catch((err) => {
+    setError(err);
+  });
 };
 
 export const requestToAppServer = (
   callback: (result: any) => void,
   setError: (err: any) => void,
 ) => {
-  request.get(
-    getOptions(
-      APP_SERVER_BASE_ENDPOINT,
-      { token: getItemFromLocalStorage('access_token') },
-      {},
+  api<NodeServerResponseType>(
+    NODE_SERVER_BASE_ENDPOINT,
+    getNodeServiceOptions(
+      getItemFromLocalStorage('access_token'),
     ),
-    (err, res, body) => {
-      if (res.statusCode !== 404) {
-        setError(err);
-        return;
-      }
-      const result = body;
-      callback(result);
-    },
-  );
+  ).then((res) => {
+    callback(res);
+  }).catch((err) => {
+    setError(err);
+  });
 };
