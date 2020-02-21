@@ -1,5 +1,5 @@
 const MICRO_SERVICE_BASE_ENDPOINT = '/en/d/point';
-const NODE_SERVER_BASE_ENDPOINT = '/en/d/point';
+const NODE_SERVER_BASE_ENDPOINT = 'http://test.oring/en/d/point';
 
 const saveTokenToLocalStorage = (accessToken: string) => {
   window.localStorage.setItem('access_token', accessToken);
@@ -75,6 +75,6 @@ export const requestToAppServer = (
   ).then((res) => {
     callback(res);
   }).catch((err) => {
-    setError(err);
+    setError('リクエストに失敗しました');
   });
 };
