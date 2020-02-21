@@ -1,0 +1,31 @@
+---
+name: LoadingLotteryModal
+menu: Modals
+---
+
+import { Playground, Props } from 'docz';
+import LoadingLotteryModal from './LoadingLotteryModal';
+
+# LoadingLotteryModal
+
+`ResultPage`でAPIからの抽選結果を待つときに使うモーダル
+
+## Props
+
+<Props of={LoadingLotteryModal}/>
+
+## Basic Usage
+
+<Playground>
+  <div style={{width: '100%', height: '100vh', position: 'relative'}}>
+    <LoadingLotteryModal onClick={() => {}} />
+  </div>
+</Playground>
+
+## Loading
+
+<Playground>
+  <div style={{width: '100%', height: '100vh', position: 'relative'}}>
+    <LoadingLotteryModal onClick={() => {}} fetching />
+  </div>
+</Playground>
