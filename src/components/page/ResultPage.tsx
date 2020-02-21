@@ -70,13 +70,10 @@ const ResultPage = (): ReactElement => {
   }, [setStartAnimation]);
 
   useEffect(() => {
-    const res = dummyFetch();
     const fetchWinner = async () => {
-      const { isWinner: resIsWinner } = await res;
-      setTimeout(() => {
-        setIsWinner(resIsWinner);
-        setFetching(false);
-      }, 2000);
+      const res = await dummyFetch();
+      setIsWinner(res.isWinner);
+      setFetching(false);
     };
     setFetching(true);
     fetchWinner();
