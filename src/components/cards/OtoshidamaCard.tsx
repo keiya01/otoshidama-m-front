@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useCallback } from 'react';
 import styled from 'styled-components';
 import AbsoluteBorder from '../borders/AbsoluteBorder';
 import TwitterButton from '../buttons/TwitterButton';
@@ -46,24 +46,31 @@ const ButtonContainer = styled.div`
 `;
 
 export interface OtoshidamaCardProps {
-  login: () => Promise<void>;
-  fetching: boolean;
+  login?: () => Promise<void>;
+  fetching?: boolean;
 }
 
-const OtoshidamaCard = ({ login, fetching }: OtoshidamaCardProps): ReactElement => (
-  <Card>
-    <AbsoluteBorder borderColor="#e6bf43" top={35} right={5} left={5} isVertical />
-    <AbsoluteBorder borderColor="#ed514e" right={20} top={5} bottom={5} />
-    <VerticalContent>
-      <Title>
-        お年玉-M
-        <Icon role="img" aria-label="party popper">&#x1f389;</Icon>
-      </Title>
-    </VerticalContent>
-    <ButtonContainer>
-      <TwitterButton onClick={login} fetching={fetching} />
-    </ButtonContainer>
-  </Card>
-);
+const OtoshidamaCard = ({ login, fetching }: OtoshidamaCardProps): ReactElement => {
+  const AuthButton = useCallback((): ReactElement | null => (
+    login ? (
+      <ButtonContainer>
+        <TwitterButton onClick={login} fetching={!!fetching} />
+      </ButtonContainer>
+    ) : null), [fetching, login]);
+
+  return (
+    <Card>
+      <AbsoluteBorder borderColor="#e6bf43" top={35} right={5} left={5} isVertical />
+      <AbsoluteBorder borderColor="#ed514e" right={20} top={5} bottom={5} />
+      <VerticalContent>
+        <Title>
+          お年玉-M
+          <Icon role="img" aria-label="party popper">&#x1f389;</Icon>
+        </Title>
+      </VerticalContent>
+      <AuthButton />
+    </Card>
+  );
+};
 
 export default OtoshidamaCard;
