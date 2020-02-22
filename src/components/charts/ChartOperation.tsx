@@ -1,73 +1,55 @@
 import React, { ReactElement, useCallback } from 'react';
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChartBar, faChartLine } from '@fortawesome/free-solid-svg-icons';
 
-const optionDown = keyframes`
-  0% { transform: translateY(-650%); }
-  100% { transform: translateY(0); }
-`;
-
-const ChartOperationList = styled.ul`
-  width: 60%;
-  margin: 2% 20% 0 20%;
+const List = styled.div`
   display: flex;
-  flex-direction: row;
-  justify-content: center;
-  border-radius: 7px;
-  z-index: -1;
-  animation: 1s ease 0s 1 ${optionDown};
-  @media (max-width: 1024px) {
-    width: 70%;
-    margin: 10% 15% 0 15%;
-  }
-  @media (max-width: 500px) {
-    width: 100%;
-    margin: 10% 0 0 0;
-  }
+  justify-content: space-between;
+  width: 104px;
+  margin: 16px;
 `;
 
-const ChartOperationItem = styled.li`
-  color: #E6BF43;
-  font-weight: 500;
-  text-shadow: 1px 2px 0 lightgray;
-  margin: 0 50px;
-  padding: 10px;
-  font-size: 2.2rem;
-  transition: opacity .3s ease;
-  cursor: pointer;
-  &:hover {
-    opacity: 0.6;
-  }
-  @media (max-width: 1024px) {
-    font-size: 2.5rem;
-  }
-  @media (max-width: 500px) {
-    margin: 0 20px;
-    padding: 0;
-  }
+type ItemProps = {
+  isSelected: boolean;
+};
+const Item = styled.div<{ isSelected: boolean }>`
+  font-size: 32px;
+  line-height: 1;
+  width: 32px;
+  padding: 8px;
+  box-sizing: content-box;
+  text-align: center;
+  flex: 0 0 auto;
+  border-radius: 2px;
+  background-color: ${({ isSelected }: ItemProps) => (isSelected ? '#f4c95a' : '#ddd')};
+  color: #fff;
 `;
-
 interface Props {
   setChartType: React.Dispatch<React.SetStateAction<number>>;
+  chartType: number;
 }
 
 const ChartOperation = (props: Props): ReactElement => {
-  const { setChartType } = props;
+  const { setChartType, chartType } = props;
   const handleOnClick = useCallback(
-    (chartType: number) => () => {
-      setChartType(chartType);
+    (n: number) => () => {
+      setChartType(n);
     },
     [setChartType],
   );
 
+  const isSelected = useCallback((n: number) => n === chartType, [chartType]);
+
   return (
-    <ChartOperationList>
-      <ChartOperationItem onClick={handleOnClick(0)}>
-        Line Chart
-      </ChartOperationItem>
-      <ChartOperationItem onClick={handleOnClick(1)}>
-        Bar Chart
-      </ChartOperationItem>
-    </ChartOperationList>
+    <List>
+      <Item onClick={handleOnClick(0)} isSelected={isSelected(0)}>
+        <FontAwesomeIcon icon={faChartLine} />
+      </Item>
+      <Item onClick={handleOnClick(1)} isSelected={isSelected(1)}>
+        <FontAwesomeIcon icon={faChartBar} />
+      </Item>
+    </List>
   );
 };
 

@@ -17,6 +17,8 @@ interface Props {
 
 const Container = styled.div`
   flex: 1 0 0;
+  max-width: 1200px;
+  margin: 0 auto;
 `;
 
 type RequestType = {
@@ -38,7 +40,7 @@ const ContentContainer = (props: Props): ReactElement => {
     setStartDate,
     setEndDate,
   } = props;
-  const [chartType, setChartType] = useState(0);
+  const [chartType, setChartType] = useState<number>(0);
   const [data, setData] = useState(defaultData);
   const fetchDate = useCallback(
     () => {
@@ -54,7 +56,6 @@ const ContentContainer = (props: Props): ReactElement => {
 
   return (
     <Container>
-      <ChartOperation setChartType={setChartType} />
       <LabelsOperation
         startDate={startDate}
         endDate={endDate}
@@ -69,6 +70,7 @@ const ContentContainer = (props: Props): ReactElement => {
         endDate={endDate}
         data={data}
       />
+      <ChartOperation setChartType={setChartType} chartType={chartType} />
     </Container>
   );
 };

@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
 
 const Container = styled.header`
   position: relative;
@@ -7,7 +9,7 @@ const Container = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px #F4C95A solid;
+  border-bottom: 1px #f4c95a solid;
   background-image: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
   color: #fff;
   z-index: 1000;
@@ -38,11 +40,10 @@ export type Props = {
 
 const Header = ({ pageTitle, onClick }: Props): React.ReactElement => (
   <Container>
-    <Menu onClick={onClick}>menu</Menu>
-    <Title>
-      お年玉M –
-      {pageTitle}
-    </Title>
+    <Menu onClick={onClick}>
+      <FontAwesomeIcon icon={faBars} />
+    </Menu>
+    <Title>{`お年玉M – ${pageTitle}`}</Title>
   </Container>
 );
 
