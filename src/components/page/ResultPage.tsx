@@ -7,6 +7,7 @@ import CheckBoard from '../backgrounds/CheckBoard';
 import OtoshidamaCard from '../cards/OtoshidamaCard';
 import ResultCard from '../cards/ResultCard';
 import LoadingLotteryModal from '../modals/LoadingLotteryModal';
+import getCampaignResult from '../../services/campaignResultService';
 
 const Container = styled(CheckBoard)`
   display: flex;
@@ -51,23 +52,11 @@ const CardWrapper = styled.div`
   ${setCardAnimation}
 `;
 
-const dummyFetch = async (tweetID: string) => new Promise<{
-  isWinner: boolean;
-  tweetID: string;
-}>((resolve, reject) => setTimeout(() => {
-  if (Math.random() < 0.5) {
-    resolve({ tweetID, isWinner: false });
-  } else {
-    resolve({ tweetID, isWinner: true });
-  }
-  // reject(new Error('Error occurred'));
-}, 1000));
-
 const ResultPage = (): ReactElement => {
   const [fetching, setFetching] = useState(false);
   const [isWinner, setIsWinner] = useState(false);
   const [startAnimation, setStartAnimation] = useState(false);
-  const { tweetID } = useParams();
+  const { campaign_id: campaignID } = useParams(); // eslint-disable-line
   const history = useHistory();
   const handleOnClick = useCallback(() => {
     setStartAnimation(true);
@@ -75,17 +64,17 @@ const ResultPage = (): ReactElement => {
 
   useEffect(() => {
     const fetchWinner = async () => {
-      if (!tweetID) {
+      if (!campaignID) {
         history.push('/error/404');
         return;
       }
-      const res = await dummyFetch(tweetID);
-      setIsWinner(res.isWinner);
+      const resIsWinner = await getCampaignResult(campaignID);
+      setIsWinner(resIsWinner);
       setFetching(false);
     };
     setFetching(true);
     fetchWinner();
-  }, [history, tweetID]);
+  }, [history, campaignID]);
 
   return (
     <Container>

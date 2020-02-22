@@ -12,7 +12,7 @@ const Router = (): ReactElement => (
     <Suspense fallback={<div>loading...</div>}>
       <Switch>
         <Route exact path="/" component={lotteryPage} />
-        <Route exact path="/result/:tweetID" component={resultPage} />
+        <Route exact path="/result/:campaign_id" component={resultPage} />
         <Route exact path="/login-complete" component={loginCompletePage} />
         <Route path="/sample" component={sample} />
         <Route exact path="/setting" component={setting} />
