@@ -13,7 +13,7 @@ const Contents = styled.div`
 `;
 
 const ContentWrapper = styled.div`
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.2);
   position: fixed;
   width: 100%;
   height: 100vh;
