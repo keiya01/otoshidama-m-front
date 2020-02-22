@@ -80,7 +80,7 @@ const TweetInputContainer = (props: Props): ReactElement => {
     <ContainerStyled>
       <InputForm
         id="campaign-title-input"
-        label="企画タイトル"
+        label="企画用ツイート"
         fontSize="3rem"
         width="40%"
         marginTop="5%"
