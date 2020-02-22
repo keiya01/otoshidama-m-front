@@ -75,6 +75,7 @@ export const requestToAppServer = <T>(
   callback: (result: any) => void,
   setError: (err: any) => void,
   body: T,
+  url: string,
 ) => {
   api(
     NODE_SERVER_BASE_ENDPOINT,

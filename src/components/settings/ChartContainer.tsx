@@ -2,6 +2,7 @@ import React, { ReactElement, useCallback } from 'react';
 import styled from 'styled-components';
 import { Line, Bar } from 'react-chartjs-2';
 import Chart from '../charts/Chart';
+import { DataType } from '../charts/DataType';
 
 const ChartContainerStyled = styled.div`
   width: 100%;
@@ -19,27 +20,30 @@ interface Props {
   chartType: number;
   startDate: Date;
   endDate: Date;
+  data: DataType;
 }
 
 const ChartContainer = (props: Props): ReactElement => {
   const {
-    tab, chartType, startDate, endDate,
+    tab, chartType, startDate, endDate, data,
   } = props;
   const selectContainer = useCallback(
     (tabNum: number, chart: number) => {
       const charts = [
         <Chart
+          data={data}
           IChartComponent={Line}
           labelsArgs={{ startDate, endDate, margin: 7 }}
         />,
         <Chart
+          data={data}
           IChartComponent={Bar}
           labelsArgs={{ startDate, endDate, margin: 7 }}
         />,
       ];
       return tabNum === 0 ? charts[chart] : <div>Tweet関連画面</div>;
     },
-    [endDate, startDate],
+    [data, endDate, startDate],
   );
 
   return (

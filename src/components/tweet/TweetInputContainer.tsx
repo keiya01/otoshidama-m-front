@@ -65,7 +65,8 @@ const TweetInputContainer = (props: Props): ReactElement => {
       requestToAppServer<RequestType>(callback, errorHandling, {
         tweetId,
         twitterId,
-      });
+      },
+      'endpoint');
     },
     [callback, errorHandling, tweetId, twitterId],
   );
