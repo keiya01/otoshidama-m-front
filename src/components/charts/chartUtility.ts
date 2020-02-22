@@ -1,4 +1,5 @@
 import { ChartData } from 'react-chartjs-2';
+import { DataType } from './DataType';
 
 // To string functions.
 const toStringDayHour = (date: Date): string => `
@@ -125,19 +126,24 @@ export const barBaseDatasets = (args: BaseDataArguments): object => {
 type ChartDataType = { datasets: object[]; labels: string[] };
 
 export const getChartData = (
-  data: number[][],
+  data: DataType,
   getLabelsArgs: GetLabelsArguments,
   baseDatasets: BaseDataType,
 ): ChartData<ChartDataType> => ({
   datasets: [
     baseDatasets({
-      data: data[0],
+      data: data.likeCount,
       label: 'お気に入り',
       color: 'red',
     }),
     baseDatasets({
-      data: data[1],
+      data: data.retweetCount,
       label: 'リツイート',
+      color: 'yellowgreen',
+    }),
+    baseDatasets({
+      data: data.applicantCount,
+      label: '応募書数',
       color: 'yellowgreen',
     }),
   ],
