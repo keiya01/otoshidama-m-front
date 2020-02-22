@@ -1,3 +1,5 @@
+import { ACCESS_TOKEN } from '../services/strage';
+
 const MICRO_SERVICE_BASE_ENDPOINT = '/en/d/point';
 const NODE_SERVER_BASE_ENDPOINT = 'http://test.oring/en/d/point';
 
@@ -80,7 +82,7 @@ export const requestToAppServer = <T>(
   api(
     NODE_SERVER_BASE_ENDPOINT,
     postNodeServiceOptions(
-      getItemFromLocalStorage('access_token'),
+      getItemFromLocalStorage(ACCESS_TOKEN),
       JSON.stringify(body),
     ),
   ).then((res) => {
