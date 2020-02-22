@@ -76,7 +76,7 @@ const TweetInputContainer = (props: Props): ReactElement => {
         setTwitterId(e.currentTarget.value);
       }
       if (e.currentTarget === tweetIdInputRef.current) {
-        setTwitterId(e.currentTarget.value);
+        setTweetId(e.currentTarget.value);
       }
       setStatus(SuccessErrorStatus.NONE);
       setErrorMsg('');
