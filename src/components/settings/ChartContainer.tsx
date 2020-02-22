@@ -1,8 +1,8 @@
-import React, { ReactElement, useCallback, useState } from 'react';
+import React, { ReactElement, useCallback } from 'react';
 import styled from 'styled-components';
 import { Line, Bar } from 'react-chartjs-2';
 import Chart from '../charts/Chart';
-import { requestToAppServer } from '../../auth/request';
+import { DataType } from '../charts/DataType';
 
 const ChartContainerStyled = styled.div`
   width: 100%;
@@ -20,7 +20,7 @@ interface Props {
   chartType: number;
   startDate: Date;
   endDate: Date;
-  data: number[];
+  data: DataType;
 }
 
 const ChartContainer = (props: Props): ReactElement => {

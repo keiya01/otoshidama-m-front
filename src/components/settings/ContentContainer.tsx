@@ -5,6 +5,7 @@ import ChartContainer from './ChartContainer';
 import ChartOperation from '../charts/ChartOperation';
 import LabelsOperation from '../charts/LabelsOperation';
 import { requestToAppServer } from '../../auth/request';
+import { DataType } from '../charts/DataType';
 
 interface Props {
   tab: number;
@@ -23,6 +24,12 @@ type RequestType = {
   endDate: Date;
 };
 
+const defaultData: DataType = {
+  likeCount: [],
+  retweetCount: [],
+  applicantCount: [],
+};
+
 const ContentContainer = (props: Props): ReactElement => {
   const {
     tab,
@@ -32,12 +39,12 @@ const ContentContainer = (props: Props): ReactElement => {
     setEndDate,
   } = props;
   const [chartType, setChartType] = useState(0);
-  const [data, setData] = useState([]);
+  const [data, setData] = useState(defaultData);
   const fetchDate = useCallback(
     () => {
       requestToAppServer<RequestType>(
         (res) => { setData(res); },
-        () => { setData([]); },
+        () => { setData(defaultData); },
         { startDate, endDate },
         '/fetch/data/endoint',
       );
