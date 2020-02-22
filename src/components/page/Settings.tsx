@@ -1,7 +1,10 @@
-import React, { useState, ReactElement, useCallback } from 'react';
+import React, {
+  useState, ReactElement, useCallback, useMemo,
+} from 'react';
 import styled from 'styled-components';
 import TabContainer, { TabContainerProps } from '../settings/TabContainer';
 import ContentContainer from '../settings/ContentContainer';
+import TweetContainer from './TweetContainer';
 import Header from '../header/Header';
 
 const Contents = styled.div`
@@ -39,12 +42,9 @@ const Settings = (): ReactElement => {
     </ContentWrapper>
   )
     : null), [handleOnClick, showTab]);
-
-  return (
-    <>
-      <Header onClick={handleOnClick} pageTitle="管理コンソール" />
-      <Tab tab={tab} setTab={setTab} />
-      <Contents>
+  const Container = useMemo(() => {
+    if (tab === 0) {
+      return (
         <ContentContainer
           tab={tab}
           startDate={startDate}
@@ -52,8 +52,20 @@ const Settings = (): ReactElement => {
           setStartDate={setStartDate}
           setEndDate={setEndDate}
         />
-      </Contents>
+      );
+    }
+    return (
+      <TweetContainer />
+    );
+  }, [endDate, startDate, tab]);
 
+  return (
+    <>
+      <Header onClick={handleOnClick} pageTitle="管理コンソール" />
+      <Tab tab={tab} setTab={setTab} />
+      <Contents>
+        {Container}
+      </Contents>
     </>
   );
 };

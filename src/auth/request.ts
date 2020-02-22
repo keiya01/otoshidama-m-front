@@ -1,5 +1,5 @@
 const MICRO_SERVICE_BASE_ENDPOINT = '/en/d/point';
-const NODE_SERVER_BASE_ENDPOINT = '/en/d/point';
+const NODE_SERVER_BASE_ENDPOINT = 'http://test.oring/en/d/point';
 
 const saveTokenToLocalStorage = (accessToken: string) => {
   window.localStorage.setItem('access_token', accessToken);
@@ -45,8 +45,16 @@ const getMicroServiceOptions = (): RequestInit => ({
 const getNodeServiceOptions = (token: string): RequestInit => ({
   method: 'GET',
   headers: {
-    Authentication: `Bearer ${token}`,
+    Authorization: `Bearer ${token}`,
   },
+});
+
+const postNodeServiceOptions = (token: string, body: string): RequestInit => ({
+  method: 'POST',
+  headers: {
+    Authorization: `Bearer ${token}`,
+  },
+  body,
 });
 
 export const requestToMicroService = (
@@ -71,12 +79,13 @@ export const requestToAppServer = <T>(
 ) => {
   api(
     NODE_SERVER_BASE_ENDPOINT,
-    getNodeServiceOptions(
+    postNodeServiceOptions(
       getItemFromLocalStorage('access_token'),
+      JSON.stringify(body),
     ),
   ).then((res) => {
     callback(res);
-  }).catch((err) => {
-    setError(err);
+  }).catch(() => {
+    setError('リクエストに失敗しました');
   });
 };
