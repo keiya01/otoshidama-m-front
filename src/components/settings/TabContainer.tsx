@@ -6,9 +6,11 @@ const TabList = styled.ul`
   position: relative;
   background-color: #fafafa;
   border-left: 1px #ddd solid;
-  width: 300px;
+  max-width: 300px;
+  width: 70%;
   padding: 12px 0;
   flex: 0 0 auto;
+  height: 100%;
 `;
 
 const TabItem = styled.li<{ isSelected: boolean }>`
@@ -24,12 +26,12 @@ const TabItem = styled.li<{ isSelected: boolean }>`
   }
 `;
 
-interface Props {
+export interface TabContainerProps {
   tab: number;
   setTab: React.Dispatch<React.SetStateAction<number>>;
 }
 
-const TabContainer = (props: Props): ReactElement => {
+const TabContainer = (props: TabContainerProps): ReactElement => {
   const { tab, setTab } = props;
 
   const handleOnClick = useCallback(
