@@ -2,7 +2,6 @@ import React, { ReactElement, useCallback } from 'react';
 import styled from 'styled-components';
 import AbsoluteBorder from '../borders/AbsoluteBorder';
 import TwitterButton from '../buttons/TwitterButton';
-import SimpleSpinner from '../spinners/SimpleSpinner';
 
 const Card = styled.div`
   display: flex;
@@ -59,25 +58,13 @@ const PlannerButton = styled.button`
   cursor: pointer;
 `;
 
-const Loading = styled.div`
-  position: fixed;
-  width: 100%;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.7);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-`;
-
 export interface OtoshidamaCardProps {
-  loginForApplicant?: () => Promise<void>;
-  loginForPlanner?: () => Promise<void>;
-  fetching?: boolean;
+  loginForApplicant?: () => void;
+  loginForPlanner?: () => void;
 }
 
 const OtoshidamaCard = ({
-  loginForApplicant, loginForPlanner, fetching,
+  loginForApplicant, loginForPlanner,
 }: OtoshidamaCardProps): ReactElement => {
   const AuthButton = useCallback((): ReactElement | null => (
     loginForApplicant && loginForPlanner ? (
@@ -88,27 +75,17 @@ const OtoshidamaCard = ({
     ) : null), [loginForApplicant, loginForPlanner]);
 
   return (
-    <>
-      {
-      fetching
-    && (
-    <Loading>
-      <SimpleSpinner color="#fff" borderWidth={6} size={50} />
-    </Loading>
-    )
-    }
-      <Card>
-        <AbsoluteBorder borderColor="#e6bf43" top={35} right={5} left={5} isVertical />
-        <AbsoluteBorder borderColor="#ed514e" right={20} top={5} bottom={5} />
-        <VerticalContent>
-          <Title>
-            お年玉-M
-            <Icon role="img" aria-label="party popper">&#x1f389;</Icon>
-          </Title>
-        </VerticalContent>
-        <AuthButton />
-      </Card>
-    </>
+    <Card>
+      <AbsoluteBorder borderColor="#e6bf43" top={35} right={5} left={5} isVertical />
+      <AbsoluteBorder borderColor="#ed514e" right={20} top={5} bottom={5} />
+      <VerticalContent>
+        <Title>
+          お年玉-M
+          <Icon role="img" aria-label="party popper">&#x1f389;</Icon>
+        </Title>
+      </VerticalContent>
+      <AuthButton />
+    </Card>
   );
 };
 

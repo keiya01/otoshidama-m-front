@@ -1,50 +1,32 @@
-import React, { useState, useCallback } from 'react';
-import { useDispatch } from 'react-redux';
-import * as TwitterAuthActions from '../../actions/TwitterAuthActions';
-import { User } from '../../types/user';
+import React, { useCallback } from 'react';
 import LotteryPage from '../../components/page/LotteryPage';
-
-const dummyFetch = async () => new Promise<User>((resolve, reject) => setTimeout(() => {
-  resolve({ id: '12345', name: 'dummy' });
-  // reject(new Error('Error occurred'));
-}, 1000));
+import { TWITTER_SERVICE_API } from '../../services/api';
 
 const useTwitterAuth = () => {
-  const [actionState, setActionState] = useState({
-    fetching: false,
-    isError: false,
-  });
-  const dispatch = useDispatch();
-
-  const login = useCallback((fetchFunc: () => Promise<any>) => async () => {
-    if (actionState.fetching) return;
-    setActionState({ fetching: true, isError: false });
-    try {
-      const user = await fetchFunc();
-      dispatch(TwitterAuthActions.twitterAuthAction(user));
-      setActionState((prev) => ({ ...prev, fetching: false }));
-    } catch (error) {
-      setActionState({ fetching: false, isError: true });
+  const login = useCallback((isPlanner?: boolean) => () => {
+    if (isPlanner) {
+      localStorage.setItem('userType', 'planner');
+    } else {
+      localStorage.setItem('userType', 'applicant');
     }
-  }, [actionState.fetching, dispatch]);
+
+    window.location.href = `${TWITTER_SERVICE_API}/auth`;
+  }, []);
 
   return {
-    ...actionState,
-    loginForApplicant: login(dummyFetch),
-    loginForPlanner: login(dummyFetch),
+    loginForApplicant: login(),
+    loginForPlanner: login(true),
   };
 };
 
 const LotteryPageContainer = () => {
   const {
-    loginForApplicant, loginForPlanner, fetching, isError,
+    loginForApplicant, loginForPlanner,
   } = useTwitterAuth();
   return (
     <LotteryPage
       loginForApplicant={loginForApplicant}
       loginForPlanner={loginForPlanner}
-      fetching={fetching}
-      isError={isError}
     />
   );
 };

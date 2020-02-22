@@ -1,6 +1,6 @@
 import { TWITTER_SERVICE_API, fetchService } from './api';
 
-const TWITTER_AUTH_URL = `${TWITTER_SERVICE_API}/en/d/point`;
+const TWITTER_AUTH_URL = `${TWITTER_SERVICE_API}/auth`;
 
 type Map = Record<string, string>;
 
@@ -24,10 +24,9 @@ const parseQueryParam = (url: string): Map => {
 const twitterAuthService = async () => {
   const res = await fetchService(
     TWITTER_AUTH_URL,
-    { method: 'GET', mode: 'cors' },
+    { method: 'GET', mode: 'no-cors' },
   );
-  const params = parseQueryParam(res.url);
-  window.localStorage.setItem('access_token', params.accessToken);
+  console.log(res);
 };
 
 export default twitterAuthService;
