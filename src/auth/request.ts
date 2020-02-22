@@ -45,14 +45,14 @@ const getMicroServiceOptions = (): RequestInit => ({
 const getNodeServiceOptions = (token: string): RequestInit => ({
   method: 'GET',
   headers: {
-    Authentication: `Bearer ${token}`,
+    Authorization: `Bearer ${token}`,
   },
 });
 
 const postNodeServiceOptions = (token: string, body: string): RequestInit => ({
   method: 'POST',
   headers: {
-    Authentication: `Bearer ${token}`,
+    Authorization: `Bearer ${token}`,
   },
   body,
 });

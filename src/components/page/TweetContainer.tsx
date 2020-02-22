@@ -1,5 +1,5 @@
 import React, {
-  ReactElement, useState, useMemo, useCallback,
+  ReactElement, useState, useMemo, useCallback, useRef,
 } from 'react';
 import styled from 'styled-components';
 import CopyImage from '../../assets/copy.svg';
@@ -74,6 +74,7 @@ const TweetContainer = (): ReactElement => {
   const [errMsg, setErrorMsg] = useState('');
   const [isCopied, setCopied] = useState(false);
   const [url, setUrl] = useState(BASE_URL);
+  const inputRef = useRef({} as HTMLInputElement);
   const message = useMemo(() => (
     status === SuccessErrorStatus.ERROR ? errMsg : ''
   ), [errMsg, status]);
@@ -86,7 +87,7 @@ const TweetContainer = (): ReactElement => {
   );
   const handleOnClick = useCallback(
     () => {
-      const elem = document.querySelector('#url-input') as HTMLInputElement;
+      const elem = inputRef.current;
       elem.select();
       document.execCommand('copy');
       setCopied(true);
@@ -110,6 +111,7 @@ const TweetContainer = (): ReactElement => {
           id="url-input"
           readOnly
           value={url}
+          ref={inputRef}
         />
         <Image
           src={CopyImage}

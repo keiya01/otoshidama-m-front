@@ -1,5 +1,5 @@
 import React, {
-  ReactElement, useCallback,
+  ReactElement, useCallback, useState, useRef, FormEvent,
 } from 'react';
 import styled from 'styled-components';
 import { stringify } from 'querystring';
@@ -50,6 +50,10 @@ type RequestType = {
 
 const TweetInputContainer = (props: Props): ReactElement => {
   const { callback, setErrorMsg, setStatus } = props;
+  const [tweetId, setTweetId] = useState('');
+  const [twitterId, setTwitterId] = useState('');
+  const twitterIdInputRef = useRef({} as HTMLInputElement);
+  const tweetIdInputRef = useRef({} as HTMLInputElement);
   const errorHandling = useCallback(
     (err) => {
       setStatus(SuccessErrorStatus.ERROR);
@@ -59,17 +63,21 @@ const TweetInputContainer = (props: Props): ReactElement => {
   );
   const handleOnClick = useCallback(
     () => {
-      const tweetId = getInputValue('#campaign-title-input');
-      const twitterId = getInputValue('#twitter-id-input');
       requestToAppServer<RequestType>(callback, errorHandling, {
         tweetId,
         twitterId,
       });
     },
-    [callback, errorHandling],
+    [callback, errorHandling, tweetId, twitterId],
   );
   const handleOnChange = useCallback(
-    () => {
+    (e: FormEvent<HTMLInputElement>) => {
+      if (e.currentTarget === twitterIdInputRef.current) {
+        setTwitterId(e.currentTarget.value);
+      }
+      if (e.currentTarget === tweetIdInputRef.current) {
+        setTwitterId(e.currentTarget.value);
+      }
       setStatus(SuccessErrorStatus.NONE);
       setErrorMsg('');
     },
@@ -79,21 +87,23 @@ const TweetInputContainer = (props: Props): ReactElement => {
   return (
     <ContainerStyled>
       <InputForm
-        id="campaign-title-input"
+        value={tweetId}
         label="企画用ツイート"
         fontSize="3rem"
         width="40%"
         marginTop="5%"
         onChange={handleOnChange}
+        ref={tweetIdInputRef}
       />
       <br />
       <InputForm
-        id="twitter-id-input"
+        value={twitterId}
         label="企画者のTwitterID"
         fontSize="3rem"
         width="40%"
         marginTop="5%"
         onChange={handleOnChange}
+        ref={twitterIdInputRef}
       />
       <br />
       <Button onClick={handleOnClick}>送信</Button>

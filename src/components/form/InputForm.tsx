@@ -1,5 +1,5 @@
 import React, {
-  ReactElement, useState, useCallback, FocusEvent,
+  ReactElement, useState, useCallback, FocusEvent, FormEvent, MouseEvent,
 } from 'react';
 import styled from 'styled-components';
 
@@ -12,7 +12,7 @@ const InputStyled = styled.input<{
   fontSize: string;
   width: string;
   marginTop: string;
-  className: string;
+  isFocused: boolean;
 }>`
   font-size: ${({ fontSize }) => `${fontSize}`};
   width: ${({ width }) => `${width}`};
@@ -24,10 +24,10 @@ const InputStyled = styled.input<{
     box-shadow: 0 0 4px gray;
   }
   & ~ label {
-    top: ${({ className }) => (className !== '' ? '-85%' : '')};
-    left: ${({ className }) => (className !== '' ? '30%' : '')};
-    font-size: ${({ className, fontSize }) => (className !== '' ? `calc(${fontSize} - 1rem)` : '')};
-    color: ${({ className }) => (className !== '' ? 'red' : '')};
+    top: ${({ isFocused }) => (isFocused ? '-85%' : '')};
+    left: ${({ isFocused }) => (isFocused ? '30%' : '')};
+    font-size: ${({ isFocused, fontSize }) => (isFocused ? `calc(${fontSize} - 1rem)` : '')};
+    color: ${({ isFocused }) => (isFocused ? 'red' : '')};
   }
   &:focus ~ label {
     top: -85%;
@@ -38,8 +38,10 @@ const InputStyled = styled.input<{
 `;
 
 const LabelStyled = styled.label<{
-  marginTop: string; fontSize: string;
+  marginTop: string;
+  fontSize: string;
 }>`
+  cursor: text;
   color: gray;
   position: absolute;
   top: 0;
@@ -53,26 +55,39 @@ const LabelStyled = styled.label<{
 `;
 
 interface Props {
-  id: string;
   label: string;
   fontSize: string;
   width: string;
   marginTop: string;
-  onChange?: () => void;
+  onChange?: (e: FormEvent<HTMLInputElement>) => void;
+  ref: React.MutableRefObject<HTMLInputElement>;
+  value: string;
 }
 
 const InputForm = (props: Props): ReactElement => {
+  const [isFocused, setFocused] = useState(false);
   const {
-    id, label, fontSize, width, marginTop, onChange,
+    label,
+    fontSize,
+    width,
+    marginTop,
+    onChange,
+    ref,
+    value,
   } = props;
-  const [inputClassName, setInputClassName] = useState('');
   const handleFocus = useCallback(
     (e: FocusEvent<HTMLInputElement>) => {
       if (e.currentTarget.value.length !== 0) {
-        setInputClassName('focused');
+        setFocused(true);
       } else {
-        setInputClassName('');
+        setFocused(false);
       }
+    },
+    [],
+  );
+  const handleOnClick = useCallback(
+    () => {
+      setFocused(true);
     },
     [],
   );
@@ -82,18 +97,20 @@ const InputForm = (props: Props): ReactElement => {
       marginTop={marginTop}
     >
       <InputStyled
-        id={id}
-        className={inputClassName}
+        value={value}
+        isFocused={isFocused}
         autoComplete="off"
         marginTop={marginTop}
         fontSize={fontSize}
         width={width}
         onChange={onChange}
         onBlur={handleFocus}
+        ref={ref}
       />
       <LabelStyled
         fontSize={fontSize}
         marginTop={marginTop}
+        onClick={handleOnClick}
       >
         {label}
       </LabelStyled>
