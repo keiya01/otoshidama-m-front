@@ -16,26 +16,37 @@ const useTwitterAuth = () => {
   });
   const dispatch = useDispatch();
 
-  const login = useCallback(async () => {
+  const login = useCallback((fetchFunc: () => Promise<any>) => async () => {
+    if (actionState.fetching) return;
     setActionState({ fetching: true, isError: false });
     try {
-      const user = await dummyFetch();
+      const user = await fetchFunc();
       dispatch(TwitterAuthActions.twitterAuthAction(user));
       setActionState((prev) => ({ ...prev, fetching: false }));
     } catch (error) {
       setActionState({ fetching: false, isError: true });
     }
-  }, [dispatch]);
+  }, [actionState.fetching, dispatch]);
 
   return {
     ...actionState,
-    login,
+    loginForApplicant: login(dummyFetch),
+    loginForPlanner: login(dummyFetch),
   };
 };
 
 const LotteryPageContainer = () => {
-  const { login, fetching, isError } = useTwitterAuth();
-  return <LotteryPage login={login} fetching={fetching} isError={isError} />;
+  const {
+    loginForApplicant, loginForPlanner, fetching, isError,
+  } = useTwitterAuth();
+  return (
+    <LotteryPage
+      loginForApplicant={loginForApplicant}
+      loginForPlanner={loginForPlanner}
+      fetching={fetching}
+      isError={isError}
+    />
+  );
 };
 
 export default LotteryPageContainer;

@@ -23,12 +23,15 @@ const AlertWrapper = styled.div`
 `;
 
 export interface LotteryPageProps {
-  login: () => Promise<void>;
+  loginForApplicant: () => Promise<void>;
+  loginForPlanner: () => Promise<void>;
   fetching: boolean;
   isError: boolean;
 }
 
-const LotteryPage = ({ login, fetching, isError }: LotteryPageProps): ReactElement => {
+const LotteryPage = ({
+  loginForApplicant, loginForPlanner, fetching, isError,
+}: LotteryPageProps): ReactElement => {
   const Alert = useCallback((): ReactElement | null => (isError
     ? (
       <AlertWrapper>
@@ -41,7 +44,11 @@ const LotteryPage = ({ login, fetching, isError }: LotteryPageProps): ReactEleme
   return (
     <Container>
       <Alert />
-      <OtoshidamaCard login={login} fetching={fetching} />
+      <OtoshidamaCard
+        loginForApplicant={loginForApplicant}
+        loginForPlanner={loginForPlanner}
+        fetching={fetching}
+      />
     </Container>
   );
 };
