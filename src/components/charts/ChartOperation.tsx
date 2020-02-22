@@ -7,6 +7,7 @@ const List = styled.div`
   display: flex;
   justify-content: space-between;
   width: 104px;
+  margin: 16px;
 `;
 
 type ItemProps = {
