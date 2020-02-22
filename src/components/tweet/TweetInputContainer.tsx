@@ -44,7 +44,7 @@ const getInputValue = (id: string): string => {
 };
 
 type RequestType = {
-  campaignTitle: string;
+  tweetId: string;
   twitterId: string;
 };
 
@@ -59,10 +59,10 @@ const TweetInputContainer = (props: Props): ReactElement => {
   );
   const handleOnClick = useCallback(
     () => {
-      const campaignTitle = getInputValue('#campaign-title-input');
+      const tweetId = getInputValue('#campaign-title-input');
       const twitterId = getInputValue('#twitter-id-input');
       requestToAppServer<RequestType>(callback, errorHandling, {
-        campaignTitle,
+        tweetId,
         twitterId,
       });
     },
