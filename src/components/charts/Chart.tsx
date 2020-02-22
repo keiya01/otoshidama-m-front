@@ -5,6 +5,7 @@ import {
 } from './chartUtility';
 
 interface Props {
+  data: number[];
   labelsArgs: GetLabelsArguments;
   IChartComponent: new(props: ChartComponentProps) => ChartComponent<ChartComponentProps>;
 }

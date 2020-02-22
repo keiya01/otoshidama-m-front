@@ -70,11 +70,12 @@ interface Props {
   endDate: Date;
   setStartDate: React.Dispatch<React.SetStateAction<Date>>;
   setEndDate: React.Dispatch<React.SetStateAction<Date>>;
+  onChangeDate: () => void;
 }
 
 const LabelsOperation = (props: Props): ReactElement => {
   const {
-    startDate, endDate, setStartDate, setEndDate,
+    startDate, endDate, setStartDate, setEndDate, onChangeDate,
   } = props;
   const today = useMemo(() => new Date(), []);
   const filterDate = useCallback(
@@ -85,8 +86,9 @@ const LabelsOperation = (props: Props): ReactElement => {
     (whichDate: 'start' | 'end') => (date: Date) => {
       if (whichDate === 'start') setStartDate(date);
       if (whichDate === 'end') setEndDate(date);
+      onChangeDate();
     },
-    [setEndDate, setStartDate],
+    [onChangeDate, setEndDate, setStartDate],
   );
 
   return (
