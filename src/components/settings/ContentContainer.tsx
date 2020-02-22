@@ -54,7 +54,6 @@ const ContentContainer = (props: Props): ReactElement => {
 
   return (
     <Container>
-      <ChartOperation setChartType={setChartType} chartType={chartType} />
       <LabelsOperation
         startDate={startDate}
         endDate={endDate}
@@ -69,6 +68,7 @@ const ContentContainer = (props: Props): ReactElement => {
         endDate={endDate}
         data={data}
       />
+      <ChartOperation setChartType={setChartType} chartType={chartType} />
     </Container>
   );
 };
