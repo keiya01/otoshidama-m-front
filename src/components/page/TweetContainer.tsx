@@ -7,6 +7,7 @@ import TweetInputContainer, { SuccessErrorStatus } from '../tweet/TweetInputCont
 
 const Container = styled.div`
   text-align: center;
+  flex: 1 0 0;
 `;
 
 const ErrorMsg = styled.h3`
@@ -77,8 +78,7 @@ const TweetContainer = (): ReactElement => {
     status === SuccessErrorStatus.ERROR ? errMsg : ''
   ), [errMsg, status]);
   const callback = useCallback(
-    (res) => {
-      // 実際はresをsetUrlに入れる
+    () => {
       setUrl(BASE_URL + createRandomStr());
       setStatus(SuccessErrorStatus.SUCCESS);
     },

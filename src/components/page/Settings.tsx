@@ -3,9 +3,11 @@ import styled from 'styled-components';
 import TabContainer from '../settings/TabContainer';
 import ContentContainer from '../settings/ContentContainer';
 import TweetContainer from './TweetContainer';
+import Header from '../header/Header';
 
-const SettingsStyled = styled.div`
-  padding-top: 80px;
+const Contents = styled.div`
+  display: flex;
+  min-height: calc(100vh - 60px);
 `;
 
 const today = new Date();
@@ -33,10 +35,13 @@ const Settings = (): ReactElement => {
   }, [endDate, startDate, tab]);
 
   return (
-    <SettingsStyled>
-      <TabContainer tab={tab} setTab={setTab} />
-      {Container}
-    </SettingsStyled>
+    <>
+      <Header pageTitle="管理コンソール" />
+      <Contents>
+        <TabContainer tab={tab} setTab={setTab} />
+        {Container}
+      </Contents>
+    </>
   );
 };
 
