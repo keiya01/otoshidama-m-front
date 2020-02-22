@@ -17,6 +17,8 @@ interface Props {
 
 const Container = styled.div`
   flex: 1 0 0;
+  max-width: 1200px;
+  margin: 0 auto;
 `;
 
 type RequestType = {
