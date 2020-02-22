@@ -1,8 +1,7 @@
 import React, {
-  ReactElement, useCallback, useState, useRef, FormEvent,
+  ReactElement, useCallback, useState, useRef,
 } from 'react';
 import styled from 'styled-components';
-import { stringify } from 'querystring';
 import InputForm from '../form/InputForm';
 import { requestToAppServer } from '../../auth/request';
 
@@ -70,14 +69,17 @@ const TweetInputContainer = (props: Props): ReactElement => {
     },
     [callback, errorHandling, tweetId, twitterId],
   );
-  const handleOnChange = useCallback(
-    (e: FormEvent<HTMLInputElement>) => {
-      if (e.currentTarget === twitterIdInputRef.current) {
-        setTwitterId(e.currentTarget.value);
-      }
-      if (e.currentTarget === tweetIdInputRef.current) {
-        setTweetId(e.currentTarget.value);
-      }
+  const handleOnChangeTweeId = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      setTweetId(e.currentTarget.value);
+      setStatus(SuccessErrorStatus.NONE);
+      setErrorMsg('');
+    },
+    [setErrorMsg, setStatus],
+  );
+  const handleOnChangeTwitterId = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      setTwitterId(e.currentTarget.value);
       setStatus(SuccessErrorStatus.NONE);
       setErrorMsg('');
     },
@@ -92,7 +94,7 @@ const TweetInputContainer = (props: Props): ReactElement => {
         fontSize="3rem"
         width="40%"
         marginTop="5%"
-        onChange={handleOnChange}
+        onChange={handleOnChangeTweeId}
         ref={tweetIdInputRef}
       />
       <br />
@@ -102,7 +104,7 @@ const TweetInputContainer = (props: Props): ReactElement => {
         fontSize="3rem"
         width="40%"
         marginTop="5%"
-        onChange={handleOnChange}
+        onChange={handleOnChangeTwitterId}
         ref={twitterIdInputRef}
       />
       <br />

@@ -59,7 +59,7 @@ interface Props {
   fontSize: string;
   width: string;
   marginTop: string;
-  onChange?: (e: FormEvent<HTMLInputElement>) => void;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   ref: React.MutableRefObject<HTMLInputElement>;
   value: string;
 }
