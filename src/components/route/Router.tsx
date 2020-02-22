@@ -5,6 +5,7 @@ import setting from './setting';
 import lotteryPage from './lotteryPage';
 import error from './error';
 import resultPage from './resultPage';
+import loginCompletePage from './loginCompletePage';
 
 const Router = (): ReactElement => (
   <BrowserRouter>
@@ -12,6 +13,7 @@ const Router = (): ReactElement => (
       <Switch>
         <Route exact path="/" component={lotteryPage} />
         <Route exact path="/result/:tweetID" component={resultPage} />
+        <Route exact path="/login-complete" component={loginCompletePage} />
         <Route path="/sample" component={sample} />
         <Route exact path="/setting" component={setting} />
         <Route path="/error/:statusCode" component={error} />
