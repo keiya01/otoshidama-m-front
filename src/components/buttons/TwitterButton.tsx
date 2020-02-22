@@ -1,6 +1,5 @@
 import React, { ReactElement } from 'react';
 import styled from 'styled-components';
-import SimpleSpinner from '../spinners/SimpleSpinner';
 
 const Button = styled.button`
   display: flex;
@@ -31,20 +30,13 @@ const Button = styled.button`
 
 export interface TwitterButtonProps {
   onClick?: () => void;
-  fetching: boolean;
 }
 
-const TwitterButton = ({ onClick, fetching }: TwitterButtonProps): ReactElement => (
+const TwitterButton = ({ onClick }: TwitterButtonProps): ReactElement => (
   <Button type="button" onClick={onClick}>
-    {fetching
-      ? <SimpleSpinner color="#fff" size={35} borderWidth={5} />
-      : (
-        <>
-          Twitter認証をして
-          <br />
-          抽選結果を確認する
-        </>
-      )}
+    Twitter認証をして
+    <br />
+    抽選結果を確認する
   </Button>
 );
 
